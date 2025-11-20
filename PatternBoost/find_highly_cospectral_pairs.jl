@@ -16,7 +16,7 @@ using Random
 using DeferredAcceptance
 using NautyGraphs, Graphs#, LightGraphs
 const N = 10 #number of vertices
-const p = 0.5 #initialising Erdos-Renyi graph parameter
+const p = 0.4 #initialising Erdos-Renyi graph parameter
 const k = 1 #level of cospectrality we seek to create
 
 function flatten_adj(G)
