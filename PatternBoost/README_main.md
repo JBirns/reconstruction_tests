@@ -24,7 +24,7 @@ python3 fc_loop.py --cpu true --sample-only 2000 --max-steps 1000 --max_epochs 3
 i'll run
 python3 fc_loop.py --cpu true --sample-only 2000 --max-steps 1000 --max_epochs 3 --n_tokens 26 --dump_path experiment_output --exp_name test_run
 
-i'll run
+i'll run - hc
 python3 fc_loop.py --cpu true --sample-only 2000 --max-steps 1000 --max_epochs 3 --n_tokens 10 --dump_path experiment_output --exp_name test_run
 
 
