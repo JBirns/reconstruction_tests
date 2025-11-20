@@ -1,7 +1,0 @@
-Score: 378.0, Count: 1620
-Score: 68.0, Count: 790
-Score: -73.0, Count: 12
-Score: -123.0, Count: 68
-Score: -188.0, Count: 6
-Score: -191.0, Count: 19
-Score: -196.0, Count: 47485
