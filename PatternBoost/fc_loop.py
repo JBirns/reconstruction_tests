@@ -391,8 +391,8 @@ if __name__ == '__main__':
             with open(args.dump_path+"/distribution.txt", 'r') as file:
                 d_lines = file.readlines()
         logger.info("distribution of scores")
-        for l in d_lines:
-            logger.info(l[:-1])
+        # for l in d_lines:#########################################
+        #     logger.info(l[:-1])
 
         
         logger.info("tokenizing")
