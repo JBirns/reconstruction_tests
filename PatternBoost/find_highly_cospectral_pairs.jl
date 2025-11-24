@@ -288,7 +288,7 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
         cols_MH2 = setdiff(axes(H, 2), ordered_tuples[i][3])
 
         M_G_2= @view G[rows_MG2, cols_MG2]
-        M_H_2= @view G[rows_MH2, cols_MH2]
+        M_H_2= @view H[rows_MH2, cols_MH2]
 
         M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
     end

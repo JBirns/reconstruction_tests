@@ -16,6 +16,9 @@ Once all of this has been settled, you just have to run fc_loop.py with your sel
 
 python3 fc_loop.py --sample-only 100000 --max-steps 8000 --max_epochs 5 --n_tokens 60  --dump_path experiment_output --exp_name test_run
 
+ill run -hc small
+python3 fc_loop.py --sample-only 50000 --max-steps 2000 --max_epochs 5 --n_tokens 10  --dump_path experiment_output --exp_name test_run
+
 **Note that you must always set n_tokens to the number of vertices in the trees you are exploring.** If you are trying to run this on a local machine, the numerical parameters should be made smaller, and you must add the line --cpu true For instance,
 
 python3 fc_loop.py --cpu true --sample-only 2000 --max-steps 1000 --max_epochs 3 --n_tokens 60 --dump_path experiment_output --exp_name test_run
