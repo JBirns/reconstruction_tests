@@ -49,6 +49,16 @@ function write_output_to_file(db)
     base_name = "search_output"
     extension = "txt"
     filename = find_next_available_filename(base_name, extension)
+    
+    # Handle empty database case
+    if isempty(rewards)
+        open(filename, "w") do file
+            # Write empty file
+        end
+        println("Data written to $(filename) (empty database)")
+        return
+    end
+    
     curr_rew_index = 1
     curr_rew = rewards[1]
     lines_written::Int = 0
@@ -66,8 +76,10 @@ function write_output_to_file(db)
         
     end
     println("Data written to $(filename)")
-    println("An example of an object with maximum reward (" * string(rewards[1]) * "):")
-    println(db.rewards[rewards[1]][1])
+    if !isempty(rewards)
+        println("An example of an object with maximum reward (" * string(rewards[1]) * "):")
+        println(db.rewards[rewards[1]][1])
+    end
 end
 
 function write_plot_to_file(db)

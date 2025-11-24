@@ -198,15 +198,19 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
     #add edge back randomly/optimally
     if edge_addition == "random"
         anti_deg_v = len - sum(G[place,:])
-        if anti_deg_v == 0
-            choice = 1
-        else
-            choice = rand(1:(anti_deg_v-1))
-        end
         indices = findall(isequal(0), G[place,:])
         filter!(e -> e != place, indices)
-        G[indices[choice], place] = 1
-        G[place, indices[choice]] = 1
+        if isempty(indices)
+            # No edges to add, skip
+        elseif length(indices) == 1
+            choice = 1
+            G[indices[choice], place] = 1
+            G[place, indices[choice]] = 1
+        else
+            choice = rand(1:(length(indices)-1))
+            G[indices[choice], place] = 1
+            G[place, indices[choice]] = 1
+        end
     elseif edge_addition == "optimal"
         println("to do")
     else
@@ -282,15 +286,33 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
         # M_G = G[1:end .∉ [ordered_tuples[i][2]], 1:end .∉ [ordered_tuples[i][2]]]
         # M_H = H[1:end .∉ [ordered_tuples[i][3]], 1:end .∉ [ordered_tuples[i][3]]]
 
-        rows_MG2 = setdiff(axes(G, 1), ordered_tuples[i][2])
-        cols_MG2 = setdiff(axes(G, 2), ordered_tuples[i][2])
-        rows_MH2 = setdiff(axes(H, 1), ordered_tuples[i][3])
-        cols_MH2 = setdiff(axes(H, 2), ordered_tuples[i][3])
+        rows_MG2 = collect(setdiff(axes(G, 1), ordered_tuples[i][2]))
+        cols_MG2 = collect(setdiff(axes(G, 2), ordered_tuples[i][2]))
+        rows_MH2 = collect(setdiff(axes(H, 1), ordered_tuples[i][3]))
+        cols_MH2 = collect(setdiff(axes(H, 2), ordered_tuples[i][3]))
 
-        M_G_2= @view G[rows_MG2, cols_MG2]
-        M_H_2= @view H[rows_MH2, cols_MH2]
+        # Skip if submatrix is empty (all vertices removed)
+        if isempty(rows_MG2) || isempty(rows_MH2)
+            continue
+        end
+
+        # Create copies since cospectralise creates new matrices when swapping
+        M_G_2 = copy(G[rows_MG2, cols_MG2])
+        M_H_2 = copy(H[rows_MH2, cols_MH2])
 
         M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
+        
+        # Copy results back to original matrices
+        for (idx1, r) in enumerate(rows_MG2)
+            for (idx2, c) in enumerate(cols_MG2)
+                G[r, c] = M_G_2[idx1, idx2]
+            end
+        end
+        for (idx1, r) in enumerate(rows_MH2)
+            for (idx2, c) in enumerate(cols_MH2)
+                H[r, c] = M_H_2[idx1, idx2]
+            end
+        end
     end
 
     return flatten_pair(G,H)
