@@ -82,8 +82,12 @@ function r_set_matching_spec(G, H, r)
     G_stups = []
     H_stups = []
     for tup in combinations(1:size(G,1), r)
-        M_G = G[1:end .∉ [tup], 1:end .∉ [tup]]
-        M_H = H[1:end .∉ [tup], 1:end .∉ [tup]]
+        rows_MG = collect(setdiff(axes(G, 1), tup))
+        cols_MG = collect(setdiff(axes(G, 2), tup))
+        rows_MH = collect(setdiff(axes(H, 1), tup))
+        cols_MH = collect(setdiff(axes(H, 2), tup))
+        M_G = G[rows_MG, cols_MG]
+        M_H = H[rows_MH, cols_MH]
         push!(G_stups, Any[tup, spec_tuple(M_G)])
         push!(H_stups, Any[tup, spec_tuple(M_H)])
         push!(tuples, tup)
@@ -167,8 +171,11 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
         #pick the vertex, v, with the maximal loop difference in matching
         max_dif, place = 0, 1
         for i in 1:len
-            dif = loop_diff(G[1:end .∉ [i], 1:end .∉ [i]],
-                H[1:end .∉ [matching[i]], 1:end .∉ [matching[i]]])
+            rows_G = collect(setdiff(axes(G, 1), [i]))
+            cols_G = collect(setdiff(axes(G, 2), [i]))
+            rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
+            cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
+            dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
             if dif > max_dif
                 max_dif, place = dif, i
             end
@@ -275,8 +282,12 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
 
     ordered_tuples = []
     for i in eachindex(tuples)
-        M_G = G[1:end .∉ [tuples[i]], 1:end .∉ [tuples[i]]]
-        M_H = H[1:end .∉ [tuples[matching[i]]], 1:end .∉ [tuples[matching[i]]]]
+        rows_MG = collect(setdiff(axes(G, 1), tuples[i]))
+        cols_MG = collect(setdiff(axes(G, 2), tuples[i]))
+        rows_MH = collect(setdiff(axes(H, 1), tuples[matching[i]]))
+        cols_MH = collect(setdiff(axes(H, 2), tuples[matching[i]]))
+        M_G = G[rows_MG, cols_MG]
+        M_H = H[rows_MH, cols_MH]
         score = loop_diff(M_G,M_H)
         push!(ordered_tuples, [score, tuples[i], tuples[matching[i]]])
     end
@@ -336,8 +347,12 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
         push!(tuples, tup)
     end
     for i in eachindex(tuples)
-        M_G = G[1:end .∉ [tuples[i]], 1:end .∉ [tuples[i]]]
-        M_H = H[1:end .∉ [tuples[matching[i]]], 1:end .∉ [tuples[matching[i]]]]
+        rows_MG = collect(setdiff(axes(G, 1), tuples[i]))
+        cols_MG = collect(setdiff(axes(G, 2), tuples[i]))
+        rows_MH = collect(setdiff(axes(H, 1), tuples[matching[i]]))
+        cols_MH = collect(setdiff(axes(H, 2), tuples[matching[i]]))
+        M_G = G[rows_MG, cols_MG]
+        M_H = H[rows_MH, cols_MH]
         score -= loop_diff(M_G,M_H)
     end
     
