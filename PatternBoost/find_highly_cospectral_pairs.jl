@@ -168,7 +168,7 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
         max_dif, place = 0, 1
         for i in 1:len
             dif = loop_diff(G[1:end .∉ [i], 1:end .∉ [i]],
-                H[1:end .∉ [matching[i]], 1:end .∉ matching[[i]]])
+                H[1:end .∉ [matching[i]], 1:end .∉ [matching[i]]])
             if dif > max_dif
                 max_dif, place = dif, i
             end
