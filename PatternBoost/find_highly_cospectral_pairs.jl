@@ -6,14 +6,16 @@
 include("constants.jl")
 include("reconstruction_tests.jl")
 include("cospectralising_routines.jl")
+include("graph_line_formatting.jl")
 using JSON
 using Polynomials
 using DataStructures
 using Random
+using LinearAlgebra
 using DeferredAcceptance
 using NautyGraphs, Graphs#, LightGraphs
 const N = 10 #number of vertices
-const p = 0.4 #initialising Erdos-Renyi graph parameter
+const M = 20 #initialising #edges
 const k = 1 #level of cospectrality we seek to create
 
 function flatten_adj(G)
@@ -65,89 +67,6 @@ function pair_line_to_adj(line)
     end
 end
 
-
-function loop_diff(G, H)
-    total = 0
-    G_tup = spec_tuple(G)
-    H_tup = spec_tuple(H)
-    for i in eachindex(G_tup)
-        total += (G_tup[i]-H_tup[i])^2
-    end
-    return total
-end
-
-# function r_set_matching_spec(G, H, r)
-#     tuples = []
-#     G_stups = []
-#     H_stups = []
-#     for tup in combinations(1:size(G,1), r)
-#         rows_MG = collect(setdiff(axes(G, 1), tup))
-#         cols_MG = collect(setdiff(axes(G, 2), tup))
-#         rows_MH = collect(setdiff(axes(H, 1), tup))
-#         cols_MH = collect(setdiff(axes(H, 2), tup))
-#         M_G = G[rows_MG, cols_MG]
-#         M_H = H[rows_MH, cols_MH]
-#         push!(G_stups, Any[tup, spec_tuple(M_G)])
-#         push!(H_stups, Any[tup, spec_tuple(M_H)])
-#         push!(tuples, tup)
-#     end
-
-#     for gstup in G_stups
-#         ranking = []
-#         for hstup in H_stups
-#             total = 0
-#             for i in eachindex(gstup[2])
-#                 total += (hstup[2][i]-gstup[2][i])^2
-#             end
-#             push!(ranking, [total, hstup[1]])
-#         end
-#         sort!(ranking)
-#         push!(gstup, ranking)
-#     end
-
-#     for gstup in H_stups
-#         ranking = []
-#         for hstup in G_stups
-#             total = 0
-#             for i in eachindex(gstup[2])
-#                 total += (hstup[2][i]-gstup[2][i])^2
-#             end
-#             push!(ranking, [total, hstup[1]])
-#         end
-#         sort!(ranking)
-#         push!(gstup, ranking)
-#     end
-
-#     len = Int(binomial(size(G,1),r))
-
-#     students = zeros(Int64, len, len)
-#     for j in 1:len
-#         value_seq = G_stups[j][3]
-#         order = []
-#         for t in 1:len
-#             push!(order, value_seq[t][2])
-#         end
-#         for i in 1:len
-#             students[i,j] = findfirst(isequal(tuples[i]), order)
-#         end
-#     end
-
-#     schools = zeros(Int64, len, len)
-#     for j in 1:len
-#         value_seq = H_stups[j][3]
-#         order = []
-#         for t in 1:len
-#             push!(order, value_seq[t][2])
-#         end
-#         for i in 1:len
-#             schools[i,j] = findfirst(isequal(tuples[i]), order)
-#         end
-#     end
-#     capacities = [1 for i in 1:len]
-#     # schools_tiebroken = STB(schools)
-#     assignment = DA(students, schools, capacities)[1]
-#     return assignment
-# end
 
 #The local search algorithm for Pattern boost.
 
@@ -253,8 +172,8 @@ end
 #Produces a random pair of graphs.
 function empty_starting_point()::OBJ_TYPE
     #TODO: recover sample generation   
-    G=adjacency_matrix(erdos_renyi(N,p))
-    H=adjacency_matrix(erdos_renyi(N,p))
+    G=line_to_adj(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
+    H=line_to_adj(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
     return flatten_pair(G,H)
 end
 

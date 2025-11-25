@@ -5,6 +5,8 @@ using Random
 using DeferredAcceptance
 using NautyGraphs, Graphs#, LightGraphs
 
+include("graph_line_formatting.jl")
+include("reconstruction_tests.jl")
 
 function r_set_matching_spec(G, H, r)
     tuples = []
@@ -80,79 +82,110 @@ function r_set_matching_spec(G, H, r)
 end
 
 
-function cospectralise(G, H, vertex_selection = "random", edge_addition = "random", edge_deletion = "random")
-    #match vertex sets "optimally"
-    matching = r_set_matching_spec(G,H,1)
+# function cospectralise(G, H, vertex_selection = "random", edge_addition = "random", edge_deletion = "random")
+#     #match vertex sets "optimally"
+#     matching = r_set_matching_spec(G,H,1)
 
+#     #pick G or H w.p. 1/2
+#     setting = rand(1:2)
+#     if setting == 2
+#         tmp = copy(G)
+#         G = copy(H)
+#         H = tmp
+#         matching = inverse_permutation(matching)
+#     end
+
+#     len = size(G,1)
+
+#     if vertex_selection == "random"
+#         place = rand(1:len)
+#     elseif vertex_selection == "optimal"
+#         #pick the vertex, v, with the maximal loop difference in matching
+#         max_dif, place = 0, 1
+#         for i in 1:len
+#             rows_G = collect(setdiff(axes(G, 1), [i]))
+#             cols_G = collect(setdiff(axes(G, 2), [i]))
+#             rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
+#             cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
+#             dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
+#             if dif > max_dif
+#                 max_dif, place = dif, i
+#             end
+#         end
+#     else
+#         error("edge deletion must be 'random' or 'optimal'")
+#     end
+
+#     #pick and edge adj to v delete
+#     if edge_deletion == "random"
+#         deg_v = sum(G[place,:])
+#         if deg_v == 0
+#             tmp = nothing
+#         else
+#             choice = rand(1:deg_v)
+#             indices = findall(isequal(1), G[place,:])
+#             G[indices[choice], place] = 0
+#             G[place, indices[choice]] = 0
+#         end
+#     elseif edge_deletion == "optimal"
+#         println("to do")
+#     else
+#         error("edge deletion must be 'random' or 'optimal'")
+#     end
+
+
+#     #add edge back randomly/optimally
+#     if edge_addition == "random"
+#         anti_deg_v = len - sum(G[place,:])
+#         indices = findall(isequal(0), G[place,:])
+#         filter!(e -> e != place, indices)
+#         if isempty(indices)
+#             # No edges to add, skip
+#         elseif length(indices) == 1
+#             choice = 1
+#             G[indices[choice], place] = 1
+#             G[place, indices[choice]] = 1
+#         else
+#             choice = rand(1:length(indices))
+#             G[indices[choice], place] = 1
+#             G[place, indices[choice]] = 1
+#         end
+#     elseif edge_addition == "optimal"
+#         println("to do")
+#     else
+#         error("edge addition must be 'random' or 'optimal'")
+#     end
+
+#     #if G and H were swapped, swap back now
+#     if setting == 2
+#         tmp = copy(G)
+#         G = copy(H)
+#         H = tmp
+#     end
+
+#     return (G,H)
+# end
+
+
+function cospectralise(G, H, num_changes = 10)
     #pick G or H w.p. 1/2
     setting = rand(1:2)
     if setting == 2
         tmp = copy(G)
         G = copy(H)
         H = tmp
-        matching = inverse_permutation(matching)
     end
 
-    len = size(G,1)
+    n = size(G,1)
+    G_line = flatten_adj(G)
+    m = sum(G_line)
 
-    if vertex_selection == "random"
-        place = rand(1:len)
-    elseif vertex_selection == "optimal"
-        #pick the vertex, v, with the maximal loop difference in matching
-        max_dif, place = 0, 1
-        for i in 1:len
-            rows_G = collect(setdiff(axes(G, 1), [i]))
-            cols_G = collect(setdiff(axes(G, 2), [i]))
-            rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
-            cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
-            dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
-            if dif > max_dif
-                max_dif, place = dif, i
-            end
-        end
-    else
-        error("edge deletion must be 'random' or 'optimal'")
-    end
-
-    #pick and edge adj to v delete
-    if edge_deletion == "random"
-        deg_v = sum(G[place,:])
-        if deg_v == 0
-            tmp = nothing
-        else
-            choice = rand(1:deg_v)
-            indices = findall(isequal(1), G[place,:])
-            G[indices[choice], place] = 0
-            G[place, indices[choice]] = 0
-        end
-    elseif edge_deletion == "optimal"
-        println("to do")
-    else
-        error("edge deletion must be 'random' or 'optimal'")
-    end
+    G_line[randperm(length(G_line))[1:num_changes]] .⊻= 1
 
 
-    #add edge back randomly/optimally
-    if edge_addition == "random"
-        anti_deg_v = len - sum(G[place,:])
-        indices = findall(isequal(0), G[place,:])
-        filter!(e -> e != place, indices)
-        if isempty(indices)
-            # No edges to add, skip
-        elseif length(indices) == 1
-            choice = 1
-            G[indices[choice], place] = 1
-            G[place, indices[choice]] = 1
-        else
-            choice = rand(1:length(indices))
-            G[indices[choice], place] = 1
-            G[place, indices[choice]] = 1
-        end
-    elseif edge_addition == "optimal"
-        println("to do")
-    else
-        error("edge addition must be 'random' or 'optimal'")
-    end
+
+
+
 
     #if G and H were swapped, swap back now
     if setting == 2
@@ -164,11 +197,9 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
     return (G,H)
 end
 
-# G = [0 0 1 1 0 1; 0 0 1 0 0 0; 1 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 0 0 0 0 0]
-# H = [0 1 0 1 0 1; 1 0 1 0 0 1; 0 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 1 0 0 0 0]
 
-# G=adjacency_matrix(erdos_renyi(8,0.6))
-# H=adjacency_matrix(erdos_renyi(8,0.6))
+G = [0 0 1 1 0 1; 0 0 1 0 0 0; 1 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 0 0 0 0 0]
+H = [0 1 0 1 0 1; 1 0 1 0 0 1; 0 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 1 0 0 0 0]
 
 # loop_diff(G,H)
 

@@ -150,6 +150,17 @@ function spec_tuple(G::AbstractMatrix)
     return out
 end
 
+
+function loop_diff(G, H)
+    total = 0
+    G_tup = spec_tuple(G)
+    H_tup = spec_tuple(H)
+    for i in eachindex(G_tup)
+        total += (G_tup[i]-H_tup[i])^2
+    end
+    return total
+end
+
 function empty_tree(n, depth)
     if n < 0 || depth < 0 || !(n == floor(n)) || !(depth == floor(depth))
         throw(ErrorException("Nonnegative integers only"))
