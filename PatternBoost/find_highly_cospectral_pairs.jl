@@ -153,85 +153,85 @@ function r_set_matching_spec(G, H, r)
 end
 
 function cospectralise(G, H, vertex_selection = "random", edge_addition = "random", edge_deletion = "random")
-    #match vertex sets "optimally"
-    matching = r_set_matching_spec(G,H,1)
+    # #match vertex sets "optimally"
+    # matching = r_set_matching_spec(G,H,1)
 
-    #pick G or H w.p. 1/2
-    setting = rand(1:2)
-    if setting == 2
-        tmp = copy(G)
-        G = copy(H)
-        H = tmp
-        matching = inverse_permutation(matching)
-    end
+    # #pick G or H w.p. 1/2
+    # setting = rand(1:2)
+    # if setting == 2
+    #     tmp = copy(G)
+    #     G = copy(H)
+    #     H = tmp
+    #     matching = inverse_permutation(matching)
+    # end
 
-    len = size(G,1)
+    # len = size(G,1)
 
-    if vertex_selection == "random"
-        place = rand(1:len)
-    elseif vertex_selection == "optimal"
-        #pick the vertex, v, with the maximal loop difference in matching
-        max_dif, place = 0, 1
-        for i in 1:len
-            rows_G = collect(setdiff(axes(G, 1), [i]))
-            cols_G = collect(setdiff(axes(G, 2), [i]))
-            rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
-            cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
-            dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
-            if dif > max_dif
-                max_dif, place = dif, i
-            end
-        end
-    else
-        error("edge deletion must be 'random' or 'optimal'")
-    end
+    # if vertex_selection == "random"
+    #     place = rand(1:len)
+    # elseif vertex_selection == "optimal"
+    #     #pick the vertex, v, with the maximal loop difference in matching
+    #     max_dif, place = 0, 1
+    #     for i in 1:len
+    #         rows_G = collect(setdiff(axes(G, 1), [i]))
+    #         cols_G = collect(setdiff(axes(G, 2), [i]))
+    #         rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
+    #         cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
+    #         dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
+    #         if dif > max_dif
+    #             max_dif, place = dif, i
+    #         end
+    #     end
+    # else
+    #     error("edge deletion must be 'random' or 'optimal'")
+    # end
 
-    #pick and edge adj to v delete
-    if edge_deletion == "random"
-        deg_v = sum(G[place,:])
-        if deg_v == 0
-            tmp = nothing
-        else
-            choice = rand(1:deg_v)
-            indices = findall(isequal(1), G[place,:])
-            G[indices[choice], place] = 0
-            G[place, indices[choice]] = 0
-        end
-    elseif edge_deletion == "optimal"
-        println("to do")
-    else
-        error("edge deletion must be 'random' or 'optimal'")
-    end
+    # #pick and edge adj to v delete
+    # if edge_deletion == "random"
+    #     deg_v = sum(G[place,:])
+    #     if deg_v == 0
+    #         tmp = nothing
+    #     else
+    #         choice = rand(1:deg_v)
+    #         indices = findall(isequal(1), G[place,:])
+    #         G[indices[choice], place] = 0
+    #         G[place, indices[choice]] = 0
+    #     end
+    # elseif edge_deletion == "optimal"
+    #     println("to do")
+    # else
+    #     error("edge deletion must be 'random' or 'optimal'")
+    # end
 
 
-    #add edge back randomly/optimally
-    if edge_addition == "random"
-        anti_deg_v = len - sum(G[place,:])
-        indices = findall(isequal(0), G[place,:])
-        filter!(e -> e != place, indices)
-        if isempty(indices)
-            # No edges to add, skip
-        elseif length(indices) == 1
-            choice = 1
-            G[indices[choice], place] = 1
-            G[place, indices[choice]] = 1
-        else
-            choice = rand(1:length(indices))
-            G[indices[choice], place] = 1
-            G[place, indices[choice]] = 1
-        end
-    elseif edge_addition == "optimal"
-        println("to do")
-    else
-        error("edge addition must be 'random' or 'optimal'")
-    end
+    # #add edge back randomly/optimally
+    # if edge_addition == "random"
+    #     anti_deg_v = len - sum(G[place,:])
+    #     indices = findall(isequal(0), G[place,:])
+    #     filter!(e -> e != place, indices)
+    #     if isempty(indices)
+    #         # No edges to add, skip
+    #     elseif length(indices) == 1
+    #         choice = 1
+    #         G[indices[choice], place] = 1
+    #         G[place, indices[choice]] = 1
+    #     else
+    #         choice = rand(1:length(indices))
+    #         G[indices[choice], place] = 1
+    #         G[place, indices[choice]] = 1
+    #     end
+    # elseif edge_addition == "optimal"
+    #     println("to do")
+    # else
+    #     error("edge addition must be 'random' or 'optimal'")
+    # end
 
-    #if G and H wer swapped, swap back now
-    if setting == 2
-        tmp = copy(G)
-        G = copy(H)
-        H = tmp
-    end
+    # #if G and H wer swapped, swap back now
+    # if setting == 2
+    #     tmp = copy(G)
+    #     G = copy(H)
+    #     H = tmp
+    # end
 
     return (G,H)
 end
@@ -309,23 +309,23 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
             continue
         end
 
-        # # Create copies since cospectralise creates new matrices when swapping
-        # M_G_2 = copy(G[rows_MG2, cols_MG2])
-        # M_H_2 = copy(H[rows_MH2, cols_MH2])
+        # Create copies since cospectralise creates new matrices when swapping
+        M_G_2 = copy(G[rows_MG2, cols_MG2])
+        M_H_2 = copy(H[rows_MH2, cols_MH2])
 
-        # M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
+        M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
         
-        # # Copy results back to original matrices
-        # for (idx1, r) in enumerate(rows_MG2)
-        #     for (idx2, c) in enumerate(cols_MG2)
-        #         G[r, c] = M_G_2[idx1, idx2]
-        #     end
-        # end
-        # for (idx1, r) in enumerate(rows_MH2)
-        #     for (idx2, c) in enumerate(cols_MH2)
-        #         H[r, c] = M_H_2[idx1, idx2]
-        #     end
-        # end
+        # Copy results back to original matrices
+        for (idx1, r) in enumerate(rows_MG2)
+            for (idx2, c) in enumerate(cols_MG2)
+                G[r, c] = M_G_2[idx1, idx2]
+            end
+        end
+        for (idx1, r) in enumerate(rows_MH2)
+            for (idx2, c) in enumerate(cols_MH2)
+                H[r, c] = M_H_2[idx1, idx2]
+            end
+        end
     end
 
     return flatten_pair(G,H)
