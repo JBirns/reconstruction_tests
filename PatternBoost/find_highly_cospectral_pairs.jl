@@ -231,7 +231,7 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
         tmp = copy(G)
         G = copy(H)
         H = tmp
-    # end
+    end
 
     return (G,H)
 end
