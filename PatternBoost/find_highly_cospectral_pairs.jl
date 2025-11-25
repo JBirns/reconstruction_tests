@@ -186,22 +186,22 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
         error("edge deletion must be 'random' or 'optimal'")
     end
 
-    # #pick and edge adj to v delete
-    # if edge_deletion == "random"
-    #     deg_v = sum(G[place,:])
-    #     if deg_v == 0
-    #         tmp = nothing
-    #     else
-    #         choice = rand(1:deg_v)
-    #         indices = findall(isequal(1), G[place,:])
-    #         G[indices[choice], place] = 0
-    #         G[place, indices[choice]] = 0
-    #     end
-    # elseif edge_deletion == "optimal"
-    #     println("to do")
-    # else
-    #     error("edge deletion must be 'random' or 'optimal'")
-    # end
+    #pick and edge adj to v delete
+    if edge_deletion == "random"
+        deg_v = sum(G[place,:])
+        if deg_v == 0
+            tmp = nothing
+        else
+            choice = rand(1:deg_v)
+            indices = findall(isequal(1), G[place,:])
+            G[indices[choice], place] = 0
+            G[place, indices[choice]] = 0
+        end
+    elseif edge_deletion == "optimal"
+        println("to do")
+    else
+        error("edge deletion must be 'random' or 'optimal'")
+    end
 
 
     # #add edge back randomly/optimally
