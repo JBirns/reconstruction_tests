@@ -204,27 +204,27 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
     end
 
 
-    # #add edge back randomly/optimally
-    # if edge_addition == "random"
-    #     anti_deg_v = len - sum(G[place,:])
-    #     indices = findall(isequal(0), G[place,:])
-    #     filter!(e -> e != place, indices)
-    #     if isempty(indices)
-    #         # No edges to add, skip
-    #     elseif length(indices) == 1
-    #         choice = 1
-    #         G[indices[choice], place] = 1
-    #         G[place, indices[choice]] = 1
-    #     else
-    #         choice = rand(1:length(indices))
-    #         G[indices[choice], place] = 1
-    #         G[place, indices[choice]] = 1
-    #     end
-    # elseif edge_addition == "optimal"
-    #     println("to do")
-    # else
-    #     error("edge addition must be 'random' or 'optimal'")
-    # end
+    #add edge back randomly/optimally
+    if edge_addition == "random"
+        anti_deg_v = len - sum(G[place,:])
+        indices = findall(isequal(0), G[place,:])
+        filter!(e -> e != place, indices)
+        if isempty(indices)
+            # No edges to add, skip
+        elseif length(indices) == 1
+            choice = 1
+            G[indices[choice], place] = 1
+            G[place, indices[choice]] = 1
+        else
+            choice = rand(1:length(indices))
+            G[indices[choice], place] = 1
+            G[place, indices[choice]] = 1
+        end
+    elseif edge_addition == "optimal"
+        println("to do")
+    else
+        error("edge addition must be 'random' or 'optimal'")
+    end
 
     #if G and H were swapped, swap back now
     if setting == 2
