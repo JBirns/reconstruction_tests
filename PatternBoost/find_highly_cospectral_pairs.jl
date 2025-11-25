@@ -153,17 +153,17 @@ function r_set_matching_spec(G, H, r)
 end
 
 function cospectralise(G, H, vertex_selection = "random", edge_addition = "random", edge_deletion = "random")
-    # #match vertex sets "optimally"
-    # matching = r_set_matching_spec(G,H,1)
+    #match vertex sets "optimally"
+    matching = r_set_matching_spec(G,H,1)
 
-    # #pick G or H w.p. 1/2
-    # setting = rand(1:2)
-    # if setting == 2
-    #     tmp = copy(G)
-    #     G = copy(H)
-    #     H = tmp
-    #     matching = inverse_permutation(matching)
-    # end
+    #pick G or H w.p. 1/2
+    setting = rand(1:2)
+    if setting == 2
+        tmp = copy(G)
+        G = copy(H)
+        H = tmp
+        matching = inverse_permutation(matching)
+    end
 
     # len = size(G,1)
 
