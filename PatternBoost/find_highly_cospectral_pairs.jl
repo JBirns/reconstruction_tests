@@ -165,26 +165,26 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
         matching = inverse_permutation(matching)
     end
 
-    # len = size(G,1)
+    len = size(G,1)
 
-    # if vertex_selection == "random"
-    #     place = rand(1:len)
-    # elseif vertex_selection == "optimal"
-    #     #pick the vertex, v, with the maximal loop difference in matching
-    #     max_dif, place = 0, 1
-    #     for i in 1:len
-    #         rows_G = collect(setdiff(axes(G, 1), [i]))
-    #         cols_G = collect(setdiff(axes(G, 2), [i]))
-    #         rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
-    #         cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
-    #         dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
-    #         if dif > max_dif
-    #             max_dif, place = dif, i
-    #         end
-    #     end
-    # else
-    #     error("edge deletion must be 'random' or 'optimal'")
-    # end
+    if vertex_selection == "random"
+        place = rand(1:len)
+    elseif vertex_selection == "optimal"
+        #pick the vertex, v, with the maximal loop difference in matching
+        max_dif, place = 0, 1
+        for i in 1:len
+            rows_G = collect(setdiff(axes(G, 1), [i]))
+            cols_G = collect(setdiff(axes(G, 2), [i]))
+            rows_H = collect(setdiff(axes(H, 1), [matching[i]]))
+            cols_H = collect(setdiff(axes(H, 2), [matching[i]]))
+            dif = loop_diff(G[rows_G, cols_G], H[rows_H, cols_H])
+            if dif > max_dif
+                max_dif, place = dif, i
+            end
+        end
+    else
+        error("edge deletion must be 'random' or 'optimal'")
+    end
 
     # #pick and edge adj to v delete
     # if edge_deletion == "random"
@@ -226,11 +226,11 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
     #     error("edge addition must be 'random' or 'optimal'")
     # end
 
-    # #if G and H wer swapped, swap back now
-    # if setting == 2
-    #     tmp = copy(G)
-    #     G = copy(H)
-    #     H = tmp
+    #if G and H were swapped, swap back now
+    if setting == 2
+        tmp = copy(G)
+        G = copy(H)
+        H = tmp
     # end
 
     return (G,H)
