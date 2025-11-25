@@ -175,7 +175,8 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
     
     #punish disconnectivity
     if is_connected(adj_to_graph(G))==false || is_connected(adj_to_graph(H))==false
-        score -= 1e5    
+        score -= 1e5   
+        score = score * 2 
     end
 
     return score

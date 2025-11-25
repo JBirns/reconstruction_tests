@@ -252,7 +252,7 @@ function local_search!(db, lines, start_ind, nb=nb_local_searches)
     # we perform the local searches
     @threads for obj in pool
         list_obj, list_rew = local_search_on_object(db, obj)
-        tid = mod1(threadid(), num_threads)  # Ensure thread ID is in valid range [1, num_threads]
+        tid = mod1(threadid(), num_threads)  #A Cursor edit to stop changing  #thhreaads to be an issuue:: Ensure thread ID is in valid range [1, num_threads]
         append!(local_search_results_threads[tid][1], list_obj)
         append!(local_search_results_threads[tid][2], list_rew)
     end
