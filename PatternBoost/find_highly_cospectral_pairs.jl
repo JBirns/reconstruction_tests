@@ -43,8 +43,10 @@ function line_to_adj(line)
     place = 1
     for i in 1:(n-1)
         for j in (i+1):n
-            adj[i,j] = line[place]
-            adj[j,i] = line[place]
+            val = line[place]
+            # Ensure adjacency matrix only contains 0 or 1
+            adj[i,j] = val != 0 ? 1 : 0
+            adj[j,i] = val != 0 ? 1 : 0
             place += 1
         end
     end
@@ -214,7 +216,7 @@ function cospectralise(G, H, vertex_selection = "random", edge_addition = "rando
             G[indices[choice], place] = 1
             G[place, indices[choice]] = 1
         else
-            choice = rand(1:(length(indices)-1))
+            choice = rand(1:length(indices))
             G[indices[choice], place] = 1
             G[place, indices[choice]] = 1
         end
@@ -307,23 +309,23 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
             continue
         end
 
-        # Create copies since cospectralise creates new matrices when swapping
-        M_G_2 = copy(G[rows_MG2, cols_MG2])
-        M_H_2 = copy(H[rows_MH2, cols_MH2])
+        # # Create copies since cospectralise creates new matrices when swapping
+        # M_G_2 = copy(G[rows_MG2, cols_MG2])
+        # M_H_2 = copy(H[rows_MH2, cols_MH2])
 
-        M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
+        # M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
         
-        # Copy results back to original matrices
-        for (idx1, r) in enumerate(rows_MG2)
-            for (idx2, c) in enumerate(cols_MG2)
-                G[r, c] = M_G_2[idx1, idx2]
-            end
-        end
-        for (idx1, r) in enumerate(rows_MH2)
-            for (idx2, c) in enumerate(cols_MH2)
-                H[r, c] = M_H_2[idx1, idx2]
-            end
-        end
+        # # Copy results back to original matrices
+        # for (idx1, r) in enumerate(rows_MG2)
+        #     for (idx2, c) in enumerate(cols_MG2)
+        #         G[r, c] = M_G_2[idx1, idx2]
+        #     end
+        # end
+        # for (idx1, r) in enumerate(rows_MH2)
+        #     for (idx2, c) in enumerate(cols_MH2)
+        #         H[r, c] = M_H_2[idx1, idx2]
+        #     end
+        # end
     end
 
     return flatten_pair(G,H)
