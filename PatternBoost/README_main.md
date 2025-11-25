@@ -33,3 +33,11 @@ python3 fc_loop.py --cpu true --sample-only 2000 --max-steps 1000 --max_epochs 3
 
 
 The file PruferToTree.ipyn is SageMath code that is unnecessary for all of the above computation. It allows you to input any Prufer code, and it will output a drawing of the resulting tree. The file Problem_Erdos_IP.jl is Julia code which allows you to input a prufer code, and it will output its indepednence polynomial, as well as the value of the scoring function at every index of the independence sequence.
+
+
+
+
+
+python3 fc_loop.py --num_initial_empty_objects 50000 --final_database_size 50000 --target_db_size 50000 --nb_threads 64 --nb_local_searches 64000 --sample-only 50000 --max-steps 2000 --max_epochs 5 --n_tokens 10  --dump_path experiment_output --exp_name test_run
+
+python3 fc_loop.py --num_initial_empty_objects 50 --final_database_size 50 --target_db_size 50 --nb_threads 2 --nb_local_searches 10 --sample-only 50 --max-steps 200 --max_epochs 3 --n_tokens 10  --dump_path experiment_output --exp_name test_run
