@@ -48,3 +48,21 @@ function pair_line_to_adj(line)
         return (adjacency_matrix(erdos_renyi(N,p)),adjacency_matrix(erdos_renyi(N,p)))
     end
 end
+
+function adj_to_graph(adj)
+    n = size(adj, 1)
+    G = SimpleGraph(n)
+    
+    # Add edges based on upper triangle of adjacency matrix
+    for i in 1:n
+        for j in (i+1):n
+            if adj[i, j] != 0
+                add_edge!(G, i, j)
+            end
+        end
+    end
+    
+    return G
+end
+
+# println(pair_line_to_adj([0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]))

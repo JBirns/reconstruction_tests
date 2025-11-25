@@ -151,6 +151,7 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
     G, H = pair_line_to_adj(line)
     n = size(G,1)
 
+
     if NautyGraph(G) == NautyGraph(H) #####THIS IS NOT A FOOLPROOF ISOMORPHISM TEST
         return -1e9  # punishment for isomorphism
     end
@@ -172,6 +173,11 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
         score -= loop_diff(M_G,M_H)
     end
     
+    #punish disconnectivity
+    if is_connected(adj_to_graph(G))==false || is_connected(adj_to_graph(H))==false
+        score -= 1e5    
+    end
+
     return score
 end
 
