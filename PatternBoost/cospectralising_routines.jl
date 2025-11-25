@@ -167,7 +167,7 @@ end
 # end
 
 
-function cospectralise(G, H, num_changes = 10)
+function cospectralise(G, H, num_changes = Int(floor(size(G, 1)/3)))
     #pick G or H w.p. 1/2
     setting = rand(1:2)
     if setting == 2
@@ -178,13 +178,44 @@ function cospectralise(G, H, num_changes = 10)
 
     n = size(G,1)
     G_line = flatten_adj(G)
+    H_line = flatten_adj(H)
     m = sum(G_line)
 
     G_line[randperm(length(G_line))[1:num_changes]] .⊻= 1
+    G = line_to_adj(G_line)
 
+    H_changes = sum(G_line) - m
+    if H_changes > 0 #net addition of edges to G
+        indices = []
+        for i in eachindex(G_line)
+            if G_line[i] == 0
+                push!(indices, i)
+            end
+        end
+    elseif H_changes < 0 #net deletion of edges
+        indices = []
+        for i in eachindex(G_line)
+            if G_line[i] == 1
+                push!(indices, i)
+            end
+        end
+    end
 
+    old_score = loop_diff(G,H)
+    best_H_line = H_line
+    if H_changes != 0
+        for tup in combinations(indices, H_changes)
+            H_temp = deepcopy(H_line)
+            H_temp[tup] .⊻= 1
+            score = loop_diff(G,line_to_adj(H_temp))
+            if score > old_score
+                best_H_line = H_temp
+                old_score = score
+            end
+        end
+    end
 
-
+    H = line_to_adj(best_H_line)
 
 
     #if G and H were swapped, swap back now
@@ -198,14 +229,15 @@ function cospectralise(G, H, num_changes = 10)
 end
 
 
-G = [0 0 1 1 0 1; 0 0 1 0 0 0; 1 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 0 0 0 0 0]
-H = [0 1 0 1 0 1; 1 0 1 0 0 1; 0 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 1 0 0 0 0]
+# G = [0 0 1 1 0 1; 0 0 1 0 0 0; 1 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 0 0 0 0 0]
+# H = [0 1 0 1 0 1; 1 0 1 0 0 1; 0 1 0 1 0 0; 1 0 1 0 1 0; 0 0 0 1 0 0; 1 1 0 0 0 0]
 
 # loop_diff(G,H)
 
-# for i in 1:1000
+# for i in 1:10000
 #     G_i,H_i = cospectralise(G,H)
 #     if loop_diff(G_i,H_i) < loop_diff(G,H)
+#         print(i , "  ")
 #         println(loop_diff(G_i,H_i))
 #         # println(loop_diff(G,H))
 #         # println(loop_diff(G_i,H_i) <= loop_diff(G,H))
