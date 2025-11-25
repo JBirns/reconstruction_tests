@@ -17,6 +17,7 @@ using NautyGraphs, Graphs#, LightGraphs
 const N = 10 #number of vertices
 const M = 20 #initialising #edges
 const k = 1 #level of cospectrality we seek to create
+const cospectralising_number = 150 # number of times we iterate cospectralising
 
 function flatten_adj(G)
     line = []
@@ -121,7 +122,12 @@ function greedy_search_from_startpoint(db, obj::OBJ_TYPE)::OBJ_TYPE
         M_G_2 = copy(G[rows_MG2, cols_MG2])
         M_H_2 = copy(H[rows_MH2, cols_MH2])
 
-        M_G_2, M_H_2 = cospectralise(M_G_2, M_H_2)
+        for i in 1:cospectralising_number
+            G_i,H_i = cospectralise(M_G_2, M_H_2)
+            if loop_diff(G_i,H_i) < loop_diff(M_G_2,M_H_2)
+                M_G_2, M_H_2 = G_i,H_i
+            end
+        end
         
         # Copy results back to original matrices
         for (idx1, r) in enumerate(rows_MG2)
