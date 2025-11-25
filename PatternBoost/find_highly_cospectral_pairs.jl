@@ -17,7 +17,7 @@ using NautyGraphs, Graphs#, LightGraphs
 const N = 10 #number of vertices
 const M = 20 #initialising #edges
 const k = 1 #level of cospectrality we seek to create
-const cospectralising_number = 150 # number of times we iterate cospectralising
+const cospectralising_number = 10 # number of times we iterate cospectralising
 
 function flatten_adj(G)
     line = []
