@@ -4,14 +4,34 @@
 include("graph_line_formatting.jl")
 using Graphs
 using SimpleGraphAlgorithms
+using SimpleGraphs
 using LinearAlgebra
 
+"""
+Convert Graphs.SimpleGraph to SimpleGraphs.UndirectedGraph for use with SimpleGraphAlgorithms.
 
+Args:
+    g: Graphs.SimpleGraph object
+    
+Returns:
+    SimpleGraphs.UndirectedGraph: The graph in SimpleGraphs format
+"""
+function graphs_to_simplegraphs(g::SimpleGraph)
+    n = nv(g)
+    sg = UndirectedGraph(n)
+    
+    # Add all edges
+    for e in edges(g)
+        add_edge!(sg, src(e), dst(e))
+    end
+    
+    return sg
+end
 
 """
 Check if two adjacency matrices represent isomorphic graphs.
 
-Uses SimpleGraphAlgorithms.is_isomorphic for reliable isomorphism testing.
+Uses SimpleGraphAlgorithms.is_iso for reliable isomorphism testing.
 
 Args:
     adj1: First adjacency matrix (2D array)
@@ -28,12 +48,16 @@ function are_isomorphic(adj1, adj2)
         return false
     end
     
-    # Convert to SimpleGraph objects
+    # Convert to Graphs.SimpleGraph objects
     G1 = adj_to_graph(adj1)
     G2 = adj_to_graph(adj2)
     
+    # Convert to SimpleGraphs.UndirectedGraph for SimpleGraphAlgorithms
+    SG1 = graphs_to_simplegraphs(G1)
+    SG2 = graphs_to_simplegraphs(G2)
+    
     # Use SimpleGraphAlgorithms to check isomorphism directly
-    return is_iso(G1, G2)
+    return is_iso(SG1, SG2)
 end
 
 """
@@ -91,6 +115,6 @@ G_graph = adj_to_graph(G)
 H_graph = adj_to_graph(H)
 println("\nGraph G: ", nv(G_graph), " vertices, ", ne(G_graph), " edges")
 println("Graph H: ", nv(H_graph), " vertices, ", ne(H_graph), " edges")
-println("\nUsing SimpleGraphAlgorithms.is_isomorphic for reliable isomorphism testing")
+println("\nUsing SimpleGraphAlgorithms.is_iso for reliable isomorphism testing")
 
 println("\n" * "=" ^ 60)
