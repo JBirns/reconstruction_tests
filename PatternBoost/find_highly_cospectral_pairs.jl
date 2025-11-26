@@ -16,7 +16,6 @@ using LinearAlgebra
 using DeferredAcceptance
 using Graphs
 using SimpleGraphAlgorithms
-const N = 10 #number of vertices
 # const M = 4 #initialising #edges
 const k = 1 #level of cospectrality we seek to create
 const cospectralising_number = 10 # number of times we iterate cospectralising
@@ -139,9 +138,6 @@ end
 #Produces a random pair of graphs.
 function empty_starting_point()::OBJ_TYPE
     #TODO: recover sample generation   
-    M = rand(1:Int(N*(N-1)/2))
-    G=line_to_adj(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
-    H=line_to_adj(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
-    return flatten_pair(G,H)
+    return random_pair()
 end
 

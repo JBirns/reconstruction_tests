@@ -7,3 +7,5 @@ const FINAL_DATABASE_SIZE = 50_000 # Size of learning set
 const TARGET_DB_SIZE = 5_000 # Database size will never be twice bigger than that
 const OBJ_TYPE = Vector{Int}  # type for vectors encoding constructions
 const REWARD_TYPE = Float32  # type for rewards 
+
+const N = 10 #number of vertices
