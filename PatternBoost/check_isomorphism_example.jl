@@ -17,13 +17,10 @@ Returns:
     SimpleGraphs.UndirectedGraph: The graph in SimpleGraphs format
 """
 function graphs_to_simplegraphs(g::SimpleGraph)
-    n = nv(g)
-    sg = UndirectedGraph(n)
-    
-    # Add all edges
-    for e in edges(g)
-        add_edge!(sg, src(e), dst(e))
-    end
+    # Get adjacency matrix from Graphs.SimpleGraph
+    adj = adjacency_matrix(g)
+    # Construct UndirectedGraph from adjacency matrix
+    sg = UndirectedGraph(adj)
     
     return sg
 end
