@@ -155,7 +155,7 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
 
 
     # Use SimpleGraphAlgorithms for reliable isomorphism testing
-    if is_iso(G, H)
+    if are_isomorphic(G, H)
         return -1e9  # punishment for isomorphism
     end
 
