@@ -16,9 +16,9 @@ using LinearAlgebra
 using DeferredAcceptance
 using Graphs
 using SimpleGraphAlgorithms
-const N = 10 #number of vertices
-const M = 20 #initialising #edges
-const k = 1 #level of cospectrality we seek to create
+const N = 5 #number of vertices
+const M = 4 #initialising #edges
+const k = 0 #level of cospectrality we seek to create
 const cospectralising_number = 10 # number of times we iterate cospectralising
 
 function flatten_adj(G)
