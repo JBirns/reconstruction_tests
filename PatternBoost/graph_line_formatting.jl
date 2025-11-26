@@ -50,7 +50,14 @@ end
 function line_to_adj(line)
     l = length(line) 
     # n = Int((1+sqrt(1+8*l))/2)  no delimiters
-    n = Int((-1+sqrt(17+8*l))/2)
+    n_float = (-1+sqrt(17+8*l))/2
+    # Check if the result is close to an integer (within floating-point precision)
+    n_rounded = round(n_float)
+    if abs(n_float - n_rounded) > 1e-6 || n_rounded < 1
+        # Invalid format, return fallback
+        return random_pair()[1]
+    end
+    n = Int(n_rounded)
 
     #check has right delimiters
     delimiter_places = []
@@ -89,16 +96,23 @@ end
 
 function pair_line_to_adj(line)
     l = length(line)
-    for i in [1:Int((l-1)/2);Int((l+3)/2):l]
+    # Check if l is odd (required for pair format)
+    if l % 2 == 0
+        return random_pair()
+    end
+    half1 = (l-1) ÷ 2
+    half2 = (l+3) ÷ 2
+    mid = (l+1) ÷ 2
+    for i in [1:half1;half2:l]
         if line[i] == 3
             return random_pair()
         end
     end
-    if line[Int((l+1)/2)] != 3
+    if line[mid] != 3
         return random_pair()
     end
     try
-        half = Int((l-1)/2)
+        half = (l-1) ÷ 2
         G_line, H_line = [], []
         for i in 1:half
             push!(G_line, line[i])
