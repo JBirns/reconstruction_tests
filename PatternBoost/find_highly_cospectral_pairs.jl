@@ -16,7 +16,7 @@ using LinearAlgebra
 using DeferredAcceptance
 using Graphs
 using SimpleGraphAlgorithms
-const N = 5 #number of vertices
+const N = 8 #number of vertices
 const M = 4 #initialising #edges
 const k = 0 #level of cospectrality we seek to create
 const cospectralising_number = 10 # number of times we iterate cospectralising
