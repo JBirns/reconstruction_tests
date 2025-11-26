@@ -42,7 +42,7 @@ end
 
 function flatten_pair(G,H)
     line1 = flatten_adj(G)
-    push!(line(3))
+    push!(line1, 3)
     line2 = flatten_adj(H)
     return [line1;line2]
 end
