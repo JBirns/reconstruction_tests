@@ -102,7 +102,7 @@ function pair_line_to_adj(line)
         G_line, H_line = [], []
         for i in 1:half
             push!(G_line, line[i])
-            push!(H_line, line[i+half])
+            push!(H_line, line[i+1+half])
         end
         return (line_to_adj(G_line), line_to_adj(H_line))
     catch
