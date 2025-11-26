@@ -1,41 +1,17 @@
 # Isomorphism test for graphs represented as adjacency matrices
-# Uses NautyGraphs for canonical labeling
+# Uses SimpleGraphAlgorithms for isomorphism checking
 
 include("graph_line_formatting.jl")
 using Graphs
-using NautyGraphs
+using SimpleGraphAlgorithms
 using LinearAlgebra
 
-"""
-Convert an adjacency matrix to a SimpleGraph object.
 
-Args:
-    adj: 2D array representing an adjacency matrix (symmetric, 0/1 values)
-    
-Returns:
-    SimpleGraph: The graph object
-"""
-function adj_to_graph(adj)
-    n = size(adj, 1)
-    G = SimpleGraph(n)
-    
-    # Add edges based on upper triangle of adjacency matrix
-    for i in 1:n
-        for j in (i+1):n
-            if adj[i, j] != 0
-                add_edge!(G, i, j)
-            end
-        end
-    end
-    
-    return G
-end
 
 """
 Check if two adjacency matrices represent isomorphic graphs.
 
-Two graphs are isomorphic if and only if their canonical forms (computed via
-NautyGraphs) have identical adjacency matrices.
+Uses SimpleGraphAlgorithms.is_isomorphic for reliable isomorphism testing.
 
 Args:
     adj1: First adjacency matrix (2D array)
@@ -56,20 +32,8 @@ function are_isomorphic(adj1, adj2)
     G1 = adj_to_graph(adj1)
     G2 = adj_to_graph(adj2)
     
-    # Get canonical forms using NautyGraphs
-    ng1 = NautyGraph(G1)
-    ng2 = NautyGraph(G2)
-    
-    # Convert canonical forms back to graphs
-    G1_canonical = SimpleGraph(ng1)
-    G2_canonical = SimpleGraph(ng2)
-    
-    # Get adjacency matrices of canonical forms
-    adj1_canonical = Matrix(adjacency_matrix(G1_canonical))
-    adj2_canonical = Matrix(adjacency_matrix(G2_canonical))
-    
-    # Two graphs are isomorphic if and only if their canonical forms are identical
-    return adj1_canonical == adj2_canonical
+    # Use SimpleGraphAlgorithms to check isomorphism directly
+    return is_iso(G1, G2)
 end
 
 """
@@ -97,7 +61,7 @@ println("=" ^ 60)
 # Test 1: Two identical graphs (should be isomorphic)
 println("\nTest 1: Two identical triangles")
 adj_triangle = [0 1 1; 1 0 1; 1 1 0]
-result1 = are_isomorphic(adj_triangle, adj_triangle)
+result1 = is_iso(adj_triangle, adj_triangle)
 println("Result: ", result1, " (expected: true)")
 
 # Test 2: Two isomorphic but different graphs
@@ -119,24 +83,14 @@ println("Result: ", result3, " (expected: false)")
 println("\nTest 4: Graphs from your line")
 line = [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0]
 G, H = pair_line_to_adj(line)
-println("Graph G (first graph):")
-println(G)
-println("\nGraph H (second graph):")
-println(H)
 result4 = check_isomorphism_from_line(line)
 println("\nAre G and H isomorphic? ", result4)
 
-# Show canonical forms for debugging
+# Show graph details for debugging
 G_graph = adj_to_graph(G)
 H_graph = adj_to_graph(H)
-G_canonical = SimpleGraph(NautyGraph(G_graph))
-H_canonical = SimpleGraph(NautyGraph(H_graph))
-G_canonical_adj = Matrix(adjacency_matrix(G_canonical))
-H_canonical_adj = Matrix(adjacency_matrix(H_canonical))
-println("\nCanonical form of G:")
-println(G_canonical_adj)
-println("\nCanonical form of H:")
-println(H_canonical_adj)
-println("\nCanonical forms are equal: ", G_canonical_adj == H_canonical_adj)
+println("\nGraph G: ", nv(G_graph), " vertices, ", ne(G_graph), " edges")
+println("Graph H: ", nv(H_graph), " vertices, ", ne(H_graph), " edges")
+println("\nUsing SimpleGraphAlgorithms.is_isomorphic for reliable isomorphism testing")
 
 println("\n" * "=" ^ 60)

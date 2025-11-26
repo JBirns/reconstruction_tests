@@ -13,7 +13,8 @@ using DataStructures
 using Random
 using LinearAlgebra
 using DeferredAcceptance
-using NautyGraphs, Graphs#, LightGraphs
+using Graphs
+using SimpleGraphAlgorithms
 const N = 10 #number of vertices
 const M = 20 #initialising #edges
 const k = 1 #level of cospectrality we seek to create
@@ -152,7 +153,10 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
     n = size(G,1)
 
 
-    if NautyGraph(G) == NautyGraph(H) #####THIS IS NOT A FOOLPROOF ISOMORPHISM TEST
+    # Use SimpleGraphAlgorithms for reliable isomorphism testing
+    G_graph = adj_to_simplegraph(G)
+    H_graph = adj_to_simplegraph(H)
+    if is_iso(G_graph, H_graph)
         return -1e9  # punishment for isomorphism
     end
 
