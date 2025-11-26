@@ -17,7 +17,7 @@ using DeferredAcceptance
 using Graphs
 using SimpleGraphAlgorithms
 # const M = 4 #initialising #edges
-const k = 1 #level of cospectrality we seek to create
+const k = 0 #level of cospectrality we seek to create
 const cospectralising_number = 10 # number of times we iterate cospectralising
 
 
