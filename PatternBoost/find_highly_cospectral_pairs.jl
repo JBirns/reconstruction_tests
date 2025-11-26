@@ -176,11 +176,11 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
         score -= loop_diff(M_G,M_H)
     end
     
-    #punish disconnectivity
-    if Graphs.is_connected(adj_to_graph(G))==false || Graphs.is_connected(adj_to_graph(H))==false
-        score -= 1e5   
-        score = score * 2 
-    end
+    # #punish disconnectivity
+    # if Graphs.is_connected(adj_to_graph(G))==false || Graphs.is_connected(adj_to_graph(H))==false
+    #     score -= 1e5   
+    #     score = score * 2 
+    # end
 
     return score
 end
