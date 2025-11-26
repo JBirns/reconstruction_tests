@@ -7,6 +7,7 @@ include("constants.jl")
 include("reconstruction_tests.jl")
 include("cospectralising_routines.jl")
 include("graph_line_formatting.jl")
+include("check_isomorphism.jl")
 using JSON
 using Polynomials
 using DataStructures
@@ -154,9 +155,7 @@ function reward_calc(obj::OBJ_TYPE)::REWARD_TYPE
 
 
     # Use SimpleGraphAlgorithms for reliable isomorphism testing
-    G_graph = adj_to_simplegraph(G)
-    H_graph = adj_to_simplegraph(H)
-    if is_iso(G_graph, H_graph)
+    if is_iso(G, H)
         return -1e9  # punishment for isomorphism
     end
 
