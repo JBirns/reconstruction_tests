@@ -1,0 +1,144 @@
+INFO - 11/26/25 09:03:28 - 0:00:00 - ============ Initialized logger ============
+INFO - 11/26/25 09:03:28 - 0:00:00 - batch_size: 32
+                                     command: python fc_loop.py --num_initial_empty_objects 8000 --final_database_size 8000 --target_db_size 8000 --nb_threads 64 --nb_local_searches 640 --sample-only 5000 --max-steps 2000 --max_epochs 5 --n_tokens 10 --dump_path experiment_output --exp_name test_run --exp_id "90v8fpsrns"
+                                     cpu: False
+                                     debug: False
+                                     debug_slurm: False
+                                     dump_path: experiment_output/test_run/90v8fpsrns
+                                     exp_id: 90v8fpsrns
+                                     exp_name: test_run
+                                     final_database_size: 8000
+                                     gen_batch_size: 1000
+                                     global_rank: 0
+                                     is_master: True
+                                     is_slurm_job: False
+                                     learning_rate: 0.0005
+                                     local_rank: 0
+                                     master_port: -1
+                                     max_epochs: 5
+                                     max_output_length: 160
+                                     max_steps: 2000
+                                     multi_gpu: False
+                                     multi_node: False
+                                     n_embd: 64
+                                     n_embd2: 32
+                                     n_gpu_per_node: 1
+                                     n_head: 8
+                                     n_layer: 4
+                                     n_nodes: 1
+                                     n_tokens: 10
+                                     nb_local_searches: 640
+                                     nb_threads: 64
+                                     node_id: 0
+                                     num_initial_empty_objects: 8000
+                                     num_workers: 8
+                                     sample_only: 5000
+                                     seed: -1
+                                     target_db_size: 8000
+                                     temperature: 1.0
+                                     top_k: -1
+                                     type: transformer
+                                     weight_decay: 0.01
+                                     world_size: 1
+INFO - 11/26/25 09:03:28 - 0:00:00 - The experiment will be stored in experiment_output/test_run/90v8fpsrns
+                                     
+INFO - 11/26/25 09:03:28 - 0:00:00 - Running command: python fc_loop.py --num_initial_empty_objects 8000 --final_database_size 8000 --target_db_size 8000 --nb_threads 64 --nb_local_searches 640 --sample-only 5000 --max-steps 2000 --max_epochs 5 --n_tokens 10 --dump_path experiment_output --exp_name test_run
+
+INFO - 11/26/25 09:03:28 - 0:00:00 - seed: 29947889
+INFO - 11/26/25 09:03:28 - 0:00:00 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 09:45:27 - 0:41:59 - Converting to tokenized format...
+INFO - 11/26/25 09:45:27 - 0:41:59 - 0 / 7805
+INFO - 11/26/25 09:45:27 - 0:41:59 - initializing at generation: 1
+INFO - 11/26/25 09:45:27 - 0:41:59 - number of examples in the dataset: 7805
+INFO - 11/26/25 09:45:27 - 0:41:59 - max word length: 90
+INFO - 11/26/25 09:45:27 - 0:41:59 - number of unique characters in the vocabulary: 2
+INFO - 11/26/25 09:45:27 - 0:41:59 - vocabulary:
+INFO - 11/26/25 09:45:27 - 0:41:59 - ['V0', 'V1']
+INFO - 11/26/25 09:45:27 - 0:41:59 - split up the dataset into 7025 training examples and 780 test examples
+INFO - 11/26/25 09:45:27 - 0:41:59 - dataset determined that: vocab_size=11, block_size=161
+INFO - 11/26/25 09:45:27 - 0:41:59 - model #params: 211776
+INFO - 11/26/25 09:45:27 - 0:41:59 - ============ Start of generation 1 ============
+INFO - 11/26/25 09:45:27 - 0:41:59 - Memory allocated:  1.21MB, reserved: 2.00MB
+INFO - 11/26/25 09:45:27 - 0:41:59 - training
+INFO - 11/26/25 09:45:28 - 0:42:00 - step 0 | loss 2.8100 | step time 300.13ms
+INFO - 11/26/25 09:45:31 - 0:42:03 - step 100 | loss 0.5160 | step time 22.61ms
+INFO - 11/26/25 09:45:33 - 0:42:05 - step 200 | loss 0.5294 | step time 26.29ms
+INFO - 11/26/25 09:45:36 - 0:42:08 - step 300 | loss 0.5534 | step time 26.65ms
+INFO - 11/26/25 09:45:38 - 0:42:10 - step 400 | loss 0.5462 | step time 26.57ms
+INFO - 11/26/25 09:45:41 - 0:42:13 - step 500 | loss 0.5216 | step time 26.42ms
+INFO - 11/26/25 09:45:41 - 0:42:13 - step 500 train loss: 0.5388354063034058 test loss: 0.537523090839386
+INFO - 11/26/25 09:45:41 - 0:42:13 - test loss 0.537523090839386 is the best so far, saving model to experiment_output/test_run/90v8fpsrns/model.pt
+INFO - 11/26/25 09:45:44 - 0:42:16 - step 600 | loss 0.5547 | step time 26.51ms
+INFO - 11/26/25 09:45:47 - 0:42:19 - step 700 | loss 0.5319 | step time 26.56ms
+INFO - 11/26/25 09:45:49 - 0:42:21 - step 800 | loss 0.5575 | step time 26.50ms
+INFO - 11/26/25 09:45:52 - 0:42:24 - step 900 | loss 0.5094 | step time 26.48ms
+INFO - 11/26/25 09:45:55 - 0:42:27 - step 1000 | loss 0.5068 | step time 26.38ms
+INFO - 11/26/25 09:45:55 - 0:42:27 - step 1000 train loss: 0.5348939299583435 test loss: 0.5363699793815613
+INFO - 11/26/25 09:45:55 - 0:42:27 - test loss 0.5363699793815613 is the best so far, saving model to experiment_output/test_run/90v8fpsrns/model.pt
+INFO - 11/26/25 09:45:57 - 0:42:30 - step 1100 | loss 0.4905 | step time 26.54ms
+INFO - 11/26/25 09:46:00 - 0:42:32 - step 1200 | loss 0.5711 | step time 26.86ms
+INFO - 11/26/25 09:46:03 - 0:42:35 - step 1300 | loss 0.5555 | step time 26.45ms
+INFO - 11/26/25 09:46:05 - 0:42:37 - step 1400 | loss 0.5417 | step time 26.39ms
+INFO - 11/26/25 09:46:08 - 0:42:40 - step 1500 | loss 0.5362 | step time 26.38ms
+INFO - 11/26/25 09:46:08 - 0:42:40 - step 1500 train loss: 0.5310229063034058 test loss: 0.5349431037902832
+INFO - 11/26/25 09:46:08 - 0:42:40 - test loss 0.5349431037902832 is the best so far, saving model to experiment_output/test_run/90v8fpsrns/model.pt
+INFO - 11/26/25 09:46:11 - 0:42:43 - step 1600 | loss 0.5590 | step time 26.49ms
+INFO - 11/26/25 09:46:14 - 0:42:46 - step 1700 | loss 0.5319 | step time 26.50ms
+INFO - 11/26/25 09:46:16 - 0:42:48 - step 1800 | loss 0.5243 | step time 26.46ms
+INFO - 11/26/25 09:46:19 - 0:42:51 - step 1900 | loss 0.6151 | step time 26.47ms
+INFO - 11/26/25 09:46:22 - 0:42:54 - Memory allocated:  21.21MB, reserved: 510.00MB
+INFO - 11/26/25 09:46:22 - 0:42:54 - generating
+INFO - 11/26/25 09:46:56 - 0:43:28 - distribution of sample lengths: average: 269.0 max: 269
+INFO - 11/26/25 09:46:56 - 0:43:28 - decoding
+INFO - 11/26/25 09:46:56 - 0:43:28 - Decoding complete. Check the output in experiment_output/test_run/90v8fpsrns/transformer-output-decoded.txt
+INFO - 11/26/25 09:46:56 - 0:43:28 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 09:46:56 - 0:43:28 - ============ End of generation 1 ============
+INFO - 11/26/25 09:46:56 - 0:43:28 - launching search.jl
+INFO - 11/26/25 09:46:56 - 0:43:28 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 11:17:42 - 2:14:14 - distribution of scores
+INFO - 11/26/25 11:17:42 - 2:14:14 - tokenizing
+INFO - 11/26/25 11:17:42 - 2:14:14 - Converting to tokenized format...
+INFO - 11/26/25 11:17:42 - 2:14:14 - 0 / 8000
+INFO - 11/26/25 11:17:42 - 2:14:14 - number of examples in the dataset: 8000
+INFO - 11/26/25 11:17:42 - 2:14:14 - max word length: 90
+INFO - 11/26/25 11:17:42 - 2:14:14 - number of unique characters in the vocabulary: 2
+INFO - 11/26/25 11:17:42 - 2:14:14 - vocabulary:
+INFO - 11/26/25 11:17:42 - 2:14:14 - ['V0', 'V1']
+INFO - 11/26/25 11:17:42 - 2:14:14 - split up the dataset into 7200 training examples and 800 test examples
+INFO - 11/26/25 11:17:42 - 2:14:14 - ============ Start of generation 2 ============
+INFO - 11/26/25 11:17:42 - 2:14:14 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 11:17:42 - 2:14:14 - training
+INFO - 11/26/25 11:17:43 - 2:14:15 - step 0 | loss 0.4711 | step time 38.43ms
+INFO - 11/26/25 11:17:45 - 2:14:17 - step 100 | loss 0.4941 | step time 26.74ms
+INFO - 11/26/25 11:17:48 - 2:14:20 - step 200 | loss 0.4572 | step time 26.52ms
+INFO - 11/26/25 11:17:51 - 2:14:23 - step 300 | loss 0.4687 | step time 26.77ms
+INFO - 11/26/25 11:17:53 - 2:14:25 - step 400 | loss 0.3975 | step time 27.00ms
+INFO - 11/26/25 11:17:56 - 2:14:28 - step 500 | loss 0.4548 | step time 26.80ms
+INFO - 11/26/25 11:17:56 - 2:14:28 - step 500 train loss: 0.4480045437812805 test loss: 0.45012059807777405
+INFO - 11/26/25 11:17:56 - 2:14:28 - test loss 0.45012059807777405 is the best so far, saving model to experiment_output/test_run/90v8fpsrns/model.pt
+INFO - 11/26/25 11:17:59 - 2:14:31 - step 600 | loss 0.4413 | step time 26.70ms
+INFO - 11/26/25 11:18:02 - 2:14:34 - step 700 | loss 0.4577 | step time 26.71ms
+INFO - 11/26/25 11:18:04 - 2:14:36 - step 800 | loss 0.4485 | step time 26.74ms
+INFO - 11/26/25 11:18:07 - 2:14:39 - step 900 | loss 0.4736 | step time 26.78ms
+INFO - 11/26/25 11:18:10 - 2:14:42 - step 1000 | loss 0.4345 | step time 26.57ms
+INFO - 11/26/25 11:18:10 - 2:14:42 - step 1000 train loss: 0.4510703384876251 test loss: 0.4497816860675812
+INFO - 11/26/25 11:18:10 - 2:14:42 - test loss 0.4497816860675812 is the best so far, saving model to experiment_output/test_run/90v8fpsrns/model.pt
+INFO - 11/26/25 11:18:13 - 2:14:45 - step 1100 | loss 0.4550 | step time 26.71ms
+INFO - 11/26/25 11:18:15 - 2:14:47 - step 1200 | loss 0.4840 | step time 26.71ms
+INFO - 11/26/25 11:18:18 - 2:14:50 - step 1300 | loss 0.4395 | step time 26.67ms
+INFO - 11/26/25 11:18:21 - 2:14:53 - step 1400 | loss 0.4477 | step time 26.70ms
+INFO - 11/26/25 11:18:23 - 2:14:55 - step 1500 | loss 0.4624 | step time 26.48ms
+INFO - 11/26/25 11:18:24 - 2:14:56 - step 1500 train loss: 0.45197612047195435 test loss: 0.44980695843696594
+INFO - 11/26/25 11:18:26 - 2:14:58 - step 1600 | loss 0.4779 | step time 26.57ms
+INFO - 11/26/25 11:18:29 - 2:15:01 - step 1700 | loss 0.4363 | step time 26.63ms
+INFO - 11/26/25 11:18:31 - 2:15:04 - step 1800 | loss 0.4278 | step time 26.55ms
+INFO - 11/26/25 11:18:34 - 2:15:06 - step 1900 | loss 0.4882 | step time 26.51ms
+INFO - 11/26/25 11:18:37 - 2:15:09 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 11:18:37 - 2:15:09 - generating
+INFO - 11/26/25 11:19:11 - 2:15:43 - distribution of sample lengths: average: 269.0 max: 269
+INFO - 11/26/25 11:19:11 - 2:15:43 - decoding
+INFO - 11/26/25 11:19:11 - 2:15:43 - Decoding complete. Check the output in experiment_output/test_run/90v8fpsrns/transformer-output-decoded.txt
+INFO - 11/26/25 11:19:11 - 2:15:43 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 11:19:11 - 2:15:43 - ============ End of generation 2 ============
+INFO - 11/26/25 11:19:11 - 2:15:43 - launching search.jl
+INFO - 11/26/25 11:19:11 - 2:15:43 - JULIA_NUM_THREADS is set to 64
