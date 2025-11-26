@@ -1,0 +1,294 @@
+INFO - 11/26/25 08:39:57 - 0:00:00 - ============ Initialized logger ============
+INFO - 11/26/25 08:39:57 - 0:00:00 - batch_size: 32
+                                     command: python fc_loop.py --num_initial_empty_objects 5000 --final_database_size 5000 --target_db_size 5000 --nb_threads 64 --nb_local_searches 640 --sample-only 5000 --max-steps 2000 --max_epochs 5 --n_tokens 10 --dump_path experiment_output --exp_name test_run --exp_id "qykk29i6nt"
+                                     cpu: False
+                                     debug: False
+                                     debug_slurm: False
+                                     dump_path: experiment_output/test_run/qykk29i6nt
+                                     exp_id: qykk29i6nt
+                                     exp_name: test_run
+                                     final_database_size: 5000
+                                     gen_batch_size: 1000
+                                     global_rank: 0
+                                     is_master: True
+                                     is_slurm_job: False
+                                     learning_rate: 0.0005
+                                     local_rank: 0
+                                     master_port: -1
+                                     max_epochs: 5
+                                     max_output_length: 160
+                                     max_steps: 2000
+                                     multi_gpu: False
+                                     multi_node: False
+                                     n_embd: 64
+                                     n_embd2: 32
+                                     n_gpu_per_node: 1
+                                     n_head: 8
+                                     n_layer: 4
+                                     n_nodes: 1
+                                     n_tokens: 10
+                                     nb_local_searches: 640
+                                     nb_threads: 64
+                                     node_id: 0
+                                     num_initial_empty_objects: 5000
+                                     num_workers: 8
+                                     sample_only: 5000
+                                     seed: -1
+                                     target_db_size: 5000
+                                     temperature: 1.0
+                                     top_k: -1
+                                     type: transformer
+                                     weight_decay: 0.01
+                                     world_size: 1
+INFO - 11/26/25 08:39:57 - 0:00:00 - The experiment will be stored in experiment_output/test_run/qykk29i6nt
+                                     
+INFO - 11/26/25 08:39:57 - 0:00:00 - Running command: python fc_loop.py --num_initial_empty_objects 5000 --final_database_size 5000 --target_db_size 5000 --nb_threads 64 --nb_local_searches 640 --sample-only 5000 --max-steps 2000 --max_epochs 5 --n_tokens 10 --dump_path experiment_output --exp_name test_run
+
+INFO - 11/26/25 08:39:57 - 0:00:00 - seed: 499809541
+INFO - 11/26/25 08:39:57 - 0:00:00 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:40:36 - 0:00:39 - Converting to tokenized format...
+INFO - 11/26/25 08:40:36 - 0:00:39 - 0 / 5000
+INFO - 11/26/25 08:40:36 - 0:00:39 - initializing at generation: 1
+INFO - 11/26/25 08:40:36 - 0:00:39 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:40:36 - 0:00:39 - max word length: 56
+INFO - 11/26/25 08:40:36 - 0:00:39 - number of unique characters in the vocabulary: 2
+INFO - 11/26/25 08:40:36 - 0:00:39 - vocabulary:
+INFO - 11/26/25 08:40:36 - 0:00:39 - ['V0', 'V1']
+INFO - 11/26/25 08:40:36 - 0:00:39 - split up the dataset into 4500 training examples and 500 test examples
+INFO - 11/26/25 08:40:36 - 0:00:39 - dataset determined that: vocab_size=11, block_size=161
+INFO - 11/26/25 08:40:36 - 0:00:39 - model #params: 211776
+INFO - 11/26/25 08:40:36 - 0:00:39 - ============ Start of generation 1 ============
+INFO - 11/26/25 08:40:36 - 0:00:39 - Memory allocated:  1.21MB, reserved: 2.00MB
+INFO - 11/26/25 08:40:36 - 0:00:39 - training
+INFO - 11/26/25 08:40:37 - 0:00:39 - step 0 | loss 2.4951 | step time 298.42ms
+INFO - 11/26/25 08:40:39 - 0:00:42 - step 100 | loss 0.4115 | step time 26.62ms
+INFO - 11/26/25 08:40:42 - 0:00:45 - step 200 | loss 0.4017 | step time 25.79ms
+INFO - 11/26/25 08:40:45 - 0:00:47 - step 300 | loss 0.3861 | step time 25.73ms
+INFO - 11/26/25 08:40:47 - 0:00:50 - step 400 | loss 0.3666 | step time 25.58ms
+INFO - 11/26/25 08:40:50 - 0:00:52 - step 500 | loss 0.3595 | step time 25.79ms
+INFO - 11/26/25 08:40:50 - 0:00:53 - step 500 train loss: 0.3587433099746704 test loss: 0.35965877771377563
+INFO - 11/26/25 08:40:50 - 0:00:53 - test loss 0.35965877771377563 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:40:53 - 0:00:55 - step 600 | loss 0.3593 | step time 25.57ms
+INFO - 11/26/25 08:40:55 - 0:00:58 - step 700 | loss 0.3612 | step time 25.66ms
+INFO - 11/26/25 08:40:58 - 0:01:00 - step 800 | loss 0.3525 | step time 25.59ms
+INFO - 11/26/25 08:41:00 - 0:01:03 - step 900 | loss 0.3505 | step time 26.00ms
+INFO - 11/26/25 08:41:03 - 0:01:05 - step 1000 | loss 0.3515 | step time 25.70ms
+INFO - 11/26/25 08:41:03 - 0:01:06 - step 1000 train loss: 0.3520350158214569 test loss: 0.3534664511680603
+INFO - 11/26/25 08:41:03 - 0:01:06 - test loss 0.3534664511680603 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:41:06 - 0:01:08 - step 1100 | loss 0.3508 | step time 25.55ms
+INFO - 11/26/25 08:41:08 - 0:01:11 - step 1200 | loss 0.3581 | step time 25.68ms
+INFO - 11/26/25 08:41:11 - 0:01:13 - step 1300 | loss 0.3515 | step time 25.48ms
+INFO - 11/26/25 08:41:13 - 0:01:16 - step 1400 | loss 0.3506 | step time 25.52ms
+INFO - 11/26/25 08:41:16 - 0:01:18 - step 1500 | loss 0.3555 | step time 25.47ms
+INFO - 11/26/25 08:41:16 - 0:01:19 - step 1500 train loss: 0.35504788160324097 test loss: 0.35652121901512146
+INFO - 11/26/25 08:41:19 - 0:01:21 - step 1600 | loss 0.3525 | step time 25.55ms
+INFO - 11/26/25 08:41:21 - 0:01:24 - step 1700 | loss 0.3531 | step time 25.60ms
+INFO - 11/26/25 08:41:24 - 0:01:26 - step 1800 | loss 0.3504 | step time 25.61ms
+INFO - 11/26/25 08:41:26 - 0:01:29 - step 1900 | loss 0.3495 | step time 25.50ms
+INFO - 11/26/25 08:41:29 - 0:01:31 - Memory allocated:  21.21MB, reserved: 510.00MB
+INFO - 11/26/25 08:41:29 - 0:01:31 - generating
+INFO - 11/26/25 08:42:03 - 0:02:06 - distribution of sample lengths: average: 166.9998 max: 168
+INFO - 11/26/25 08:42:03 - 0:02:06 - decoding
+INFO - 11/26/25 08:42:03 - 0:02:06 - Decoding complete. Check the output in experiment_output/test_run/qykk29i6nt/transformer-output-decoded.txt
+INFO - 11/26/25 08:42:03 - 0:02:06 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:42:03 - 0:02:06 - ============ End of generation 1 ============
+INFO - 11/26/25 08:42:03 - 0:02:06 - launching search.jl
+INFO - 11/26/25 08:42:03 - 0:02:06 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:43:13 - 0:03:16 - distribution of scores
+INFO - 11/26/25 08:43:13 - 0:03:16 - tokenizing
+INFO - 11/26/25 08:43:13 - 0:03:16 - Converting to tokenized format...
+INFO - 11/26/25 08:43:13 - 0:03:16 - 0 / 5000
+INFO - 11/26/25 08:43:14 - 0:03:16 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:43:14 - 0:03:16 - max word length: 56
+INFO - 11/26/25 08:43:14 - 0:03:16 - number of unique characters in the vocabulary: 3
+INFO - 11/26/25 08:43:14 - 0:03:16 - vocabulary:
+INFO - 11/26/25 08:43:14 - 0:03:16 - ['V0', 'V1', 'V2']
+INFO - 11/26/25 08:43:14 - 0:03:16 - split up the dataset into 4500 training examples and 500 test examples
+INFO - 11/26/25 08:43:14 - 0:03:16 - ============ Start of generation 2 ============
+INFO - 11/26/25 08:43:14 - 0:03:16 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:43:14 - 0:03:16 - training
+INFO - 11/26/25 08:43:14 - 0:03:16 - step 0 | loss 0.3500 | step time 39.38ms
+INFO - 11/26/25 08:43:16 - 0:03:19 - step 100 | loss 0.3804 | step time 25.57ms
+INFO - 11/26/25 08:43:19 - 0:03:21 - step 200 | loss 0.3625 | step time 25.59ms
+INFO - 11/26/25 08:43:21 - 0:03:24 - step 300 | loss 0.3538 | step time 25.41ms
+INFO - 11/26/25 08:43:24 - 0:03:27 - step 400 | loss 0.3551 | step time 26.14ms
+INFO - 11/26/25 08:43:27 - 0:03:29 - step 500 | loss 0.3491 | step time 25.56ms
+INFO - 11/26/25 08:43:27 - 0:03:29 - step 500 train loss: 0.3582429885864258 test loss: 0.3615754544734955
+INFO - 11/26/25 08:43:27 - 0:03:29 - test loss 0.3615754544734955 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:43:29 - 0:03:32 - step 600 | loss 0.3541 | step time 25.63ms
+INFO - 11/26/25 08:43:32 - 0:03:35 - step 700 | loss 0.3517 | step time 25.47ms
+INFO - 11/26/25 08:43:35 - 0:03:37 - step 800 | loss 0.3532 | step time 25.73ms
+INFO - 11/26/25 08:43:37 - 0:03:40 - step 900 | loss 0.3501 | step time 25.72ms
+INFO - 11/26/25 08:43:40 - 0:03:42 - step 1000 | loss 0.3518 | step time 25.57ms
+INFO - 11/26/25 08:43:40 - 0:03:43 - step 1000 train loss: 0.35242176055908203 test loss: 0.35648059844970703
+INFO - 11/26/25 08:43:40 - 0:03:43 - test loss 0.35648059844970703 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:43:42 - 0:03:45 - step 1100 | loss 0.3522 | step time 25.65ms
+INFO - 11/26/25 08:43:45 - 0:03:48 - step 1200 | loss 0.3583 | step time 25.65ms
+INFO - 11/26/25 08:43:48 - 0:03:50 - step 1300 | loss 0.3542 | step time 25.61ms
+INFO - 11/26/25 08:43:50 - 0:03:53 - step 1400 | loss 0.3506 | step time 25.77ms
+INFO - 11/26/25 08:43:53 - 0:03:55 - step 1500 | loss 0.3677 | step time 25.48ms
+INFO - 11/26/25 08:43:53 - 0:03:56 - step 1500 train loss: 0.35184744000434875 test loss: 0.35484471917152405
+INFO - 11/26/25 08:43:53 - 0:03:56 - test loss 0.35484471917152405 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:43:56 - 0:03:58 - step 1600 | loss 0.3473 | step time 25.76ms
+INFO - 11/26/25 08:43:58 - 0:04:01 - step 1700 | loss 0.3488 | step time 25.62ms
+INFO - 11/26/25 08:44:01 - 0:04:03 - step 1800 | loss 0.3523 | step time 25.62ms
+INFO - 11/26/25 08:44:03 - 0:04:06 - step 1900 | loss 0.3526 | step time 25.49ms
+INFO - 11/26/25 08:44:06 - 0:04:08 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:44:06 - 0:04:08 - generating
+INFO - 11/26/25 08:44:40 - 0:04:42 - distribution of sample lengths: average: 167.0 max: 167
+INFO - 11/26/25 08:44:40 - 0:04:42 - decoding
+INFO - 11/26/25 08:44:40 - 0:04:43 - Decoding complete. Check the output in experiment_output/test_run/qykk29i6nt/transformer-output-decoded.txt
+INFO - 11/26/25 08:44:40 - 0:04:43 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:44:40 - 0:04:43 - ============ End of generation 2 ============
+INFO - 11/26/25 08:44:40 - 0:04:43 - launching search.jl
+INFO - 11/26/25 08:44:40 - 0:04:43 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:45:34 - 0:05:37 - distribution of scores
+INFO - 11/26/25 08:45:34 - 0:05:37 - tokenizing
+INFO - 11/26/25 08:45:34 - 0:05:37 - Converting to tokenized format...
+INFO - 11/26/25 08:45:34 - 0:05:37 - 0 / 5000
+INFO - 11/26/25 08:45:34 - 0:05:37 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:45:34 - 0:05:37 - max word length: 56
+INFO - 11/26/25 08:45:34 - 0:05:37 - number of unique characters in the vocabulary: 3
+INFO - 11/26/25 08:45:34 - 0:05:37 - vocabulary:
+INFO - 11/26/25 08:45:34 - 0:05:37 - ['V0', 'V1', 'V2']
+INFO - 11/26/25 08:45:34 - 0:05:37 - split up the dataset into 4500 training examples and 500 test examples
+INFO - 11/26/25 08:45:34 - 0:05:37 - ============ Start of generation 3 ============
+INFO - 11/26/25 08:45:34 - 0:05:37 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:45:34 - 0:05:37 - training
+INFO - 11/26/25 08:45:35 - 0:05:37 - step 0 | loss 0.3527 | step time 56.98ms
+INFO - 11/26/25 08:45:37 - 0:05:40 - step 100 | loss 0.3550 | step time 26.47ms
+INFO - 11/26/25 08:45:40 - 0:05:42 - step 200 | loss 0.3508 | step time 26.56ms
+INFO - 11/26/25 08:45:42 - 0:05:45 - step 300 | loss 0.3481 | step time 26.38ms
+INFO - 11/26/25 08:45:45 - 0:05:48 - step 400 | loss 0.3456 | step time 26.61ms
+INFO - 11/26/25 08:45:48 - 0:05:50 - step 500 | loss 0.3545 | step time 26.54ms
+INFO - 11/26/25 08:45:48 - 0:05:51 - step 500 train loss: 0.3488156497478485 test loss: 0.3501250147819519
+INFO - 11/26/25 08:45:48 - 0:05:51 - test loss 0.3501250147819519 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:45:51 - 0:05:53 - step 600 | loss 0.3539 | step time 26.60ms
+INFO - 11/26/25 08:45:53 - 0:05:56 - step 700 | loss 0.3401 | step time 26.41ms
+INFO - 11/26/25 08:45:56 - 0:05:59 - step 800 | loss 0.3480 | step time 26.43ms
+INFO - 11/26/25 08:45:59 - 0:06:01 - step 900 | loss 0.3433 | step time 26.37ms
+INFO - 11/26/25 08:46:01 - 0:06:04 - step 1000 | loss 0.3480 | step time 26.59ms
+INFO - 11/26/25 08:46:02 - 0:06:04 - step 1000 train loss: 0.34500136971473694 test loss: 0.3499620854854584
+INFO - 11/26/25 08:46:02 - 0:06:04 - test loss 0.3499620854854584 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:46:04 - 0:06:07 - step 1100 | loss 0.3454 | step time 26.54ms
+INFO - 11/26/25 08:46:07 - 0:06:09 - step 1200 | loss 0.3436 | step time 26.96ms
+INFO - 11/26/25 08:46:09 - 0:06:12 - step 1300 | loss 0.3474 | step time 26.52ms
+INFO - 11/26/25 08:46:12 - 0:06:15 - step 1400 | loss 0.3411 | step time 26.43ms
+INFO - 11/26/25 08:46:15 - 0:06:17 - step 1500 | loss 0.3469 | step time 26.41ms
+INFO - 11/26/25 08:46:15 - 0:06:18 - step 1500 train loss: 0.3451474606990814 test loss: 0.3497062921524048
+INFO - 11/26/25 08:46:15 - 0:06:18 - test loss 0.3497062921524048 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:46:18 - 0:06:20 - step 1600 | loss 0.3485 | step time 26.73ms
+INFO - 11/26/25 08:46:20 - 0:06:23 - step 1700 | loss 0.3392 | step time 26.42ms
+INFO - 11/26/25 08:46:23 - 0:06:26 - step 1800 | loss 0.3375 | step time 26.60ms
+INFO - 11/26/25 08:46:26 - 0:06:28 - step 1900 | loss 0.3388 | step time 26.31ms
+INFO - 11/26/25 08:46:28 - 0:06:31 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:46:28 - 0:06:31 - generating
+INFO - 11/26/25 08:47:02 - 0:07:05 - distribution of sample lengths: average: 167.0 max: 167
+INFO - 11/26/25 08:47:02 - 0:07:05 - decoding
+INFO - 11/26/25 08:47:02 - 0:07:05 - Decoding complete. Check the output in experiment_output/test_run/qykk29i6nt/transformer-output-decoded.txt
+INFO - 11/26/25 08:47:02 - 0:07:05 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:47:02 - 0:07:05 - ============ End of generation 3 ============
+INFO - 11/26/25 08:47:02 - 0:07:05 - launching search.jl
+INFO - 11/26/25 08:47:02 - 0:07:05 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:47:56 - 0:07:59 - distribution of scores
+INFO - 11/26/25 08:47:56 - 0:07:59 - tokenizing
+INFO - 11/26/25 08:47:56 - 0:07:59 - Converting to tokenized format...
+INFO - 11/26/25 08:47:56 - 0:07:59 - 0 / 5000
+INFO - 11/26/25 08:47:56 - 0:07:59 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:47:56 - 0:07:59 - max word length: 56
+INFO - 11/26/25 08:47:56 - 0:07:59 - number of unique characters in the vocabulary: 4
+INFO - 11/26/25 08:47:56 - 0:07:59 - vocabulary:
+INFO - 11/26/25 08:47:56 - 0:07:59 - ['V0', 'V1', 'V2', 'V3']
+INFO - 11/26/25 08:47:56 - 0:07:59 - split up the dataset into 4500 training examples and 500 test examples
+INFO - 11/26/25 08:47:56 - 0:07:59 - ============ Start of generation 4 ============
+INFO - 11/26/25 08:47:56 - 0:07:59 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:47:56 - 0:07:59 - training
+INFO - 11/26/25 08:47:57 - 0:07:59 - step 0 | loss 0.3431 | step time 46.08ms
+INFO - 11/26/25 08:47:59 - 0:08:02 - step 100 | loss 0.3355 | step time 26.38ms
+INFO - 11/26/25 08:48:02 - 0:08:04 - step 200 | loss 0.3412 | step time 26.66ms
+INFO - 11/26/25 08:48:04 - 0:08:07 - step 300 | loss 0.3442 | step time 26.58ms
+INFO - 11/26/25 08:48:07 - 0:08:10 - step 400 | loss 0.3521 | step time 26.87ms
+INFO - 11/26/25 08:48:10 - 0:08:12 - step 500 | loss 0.3462 | step time 26.66ms
+INFO - 11/26/25 08:48:10 - 0:08:13 - step 500 train loss: 0.3408009111881256 test loss: 0.34216979146003723
+INFO - 11/26/25 08:48:10 - 0:08:13 - test loss 0.34216979146003723 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:48:13 - 0:08:15 - step 600 | loss 0.3383 | step time 26.49ms
+INFO - 11/26/25 08:48:15 - 0:08:18 - step 700 | loss 0.3296 | step time 26.55ms
+INFO - 11/26/25 08:48:18 - 0:08:21 - step 800 | loss 0.3382 | step time 26.42ms
+INFO - 11/26/25 08:48:21 - 0:08:23 - step 900 | loss 0.3379 | step time 26.49ms
+INFO - 11/26/25 08:48:23 - 0:08:26 - step 1000 | loss 0.3340 | step time 26.47ms
+INFO - 11/26/25 08:48:24 - 0:08:26 - step 1000 train loss: 0.33939480781555176 test loss: 0.3445601761341095
+INFO - 11/26/25 08:48:26 - 0:08:29 - step 1100 | loss 0.3316 | step time 26.69ms
+INFO - 11/26/25 08:48:29 - 0:08:31 - step 1200 | loss 0.3339 | step time 26.58ms
+INFO - 11/26/25 08:48:31 - 0:08:34 - step 1300 | loss 0.3396 | step time 26.49ms
+INFO - 11/26/25 08:48:34 - 0:08:37 - step 1400 | loss 0.3322 | step time 26.65ms
+INFO - 11/26/25 08:48:37 - 0:08:39 - step 1500 | loss 0.3302 | step time 26.45ms
+INFO - 11/26/25 08:48:37 - 0:08:40 - step 1500 train loss: 0.3359403908252716 test loss: 0.34699735045433044
+INFO - 11/26/25 08:48:40 - 0:08:42 - step 1600 | loss 0.3295 | step time 26.48ms
+INFO - 11/26/25 08:48:42 - 0:08:45 - step 1700 | loss 0.3292 | step time 16.85ms
+INFO - 11/26/25 08:48:44 - 0:08:47 - step 1800 | loss 0.3370 | step time 25.40ms
+INFO - 11/26/25 08:48:47 - 0:08:49 - step 1900 | loss 0.3301 | step time 26.32ms
+INFO - 11/26/25 08:48:50 - 0:08:52 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:48:50 - 0:08:52 - generating
+INFO - 11/26/25 08:49:30 - 0:09:32 - distribution of sample lengths: average: 166.9814 max: 167
+INFO - 11/26/25 08:49:30 - 0:09:32 - decoding
+INFO - 11/26/25 08:49:30 - 0:09:32 - Decoding complete. Check the output in experiment_output/test_run/qykk29i6nt/transformer-output-decoded.txt
+INFO - 11/26/25 08:49:30 - 0:09:32 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:49:30 - 0:09:32 - ============ End of generation 4 ============
+INFO - 11/26/25 08:49:30 - 0:09:32 - launching search.jl
+INFO - 11/26/25 08:49:30 - 0:09:32 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:50:19 - 0:10:22 - distribution of scores
+INFO - 11/26/25 08:50:19 - 0:10:22 - tokenizing
+INFO - 11/26/25 08:50:19 - 0:10:22 - Converting to tokenized format...
+INFO - 11/26/25 08:50:19 - 0:10:22 - 0 / 5000
+INFO - 11/26/25 08:50:19 - 0:10:22 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:50:19 - 0:10:22 - max word length: 56
+INFO - 11/26/25 08:50:19 - 0:10:22 - number of unique characters in the vocabulary: 4
+INFO - 11/26/25 08:50:19 - 0:10:22 - vocabulary:
+INFO - 11/26/25 08:50:19 - 0:10:22 - ['V0', 'V1', 'V2', 'V3']
+INFO - 11/26/25 08:50:19 - 0:10:22 - split up the dataset into 4500 training examples and 500 test examples
+INFO - 11/26/25 08:50:19 - 0:10:22 - ============ Start of generation 5 ============
+INFO - 11/26/25 08:50:19 - 0:10:22 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:50:19 - 0:10:22 - training
+INFO - 11/26/25 08:50:20 - 0:10:22 - step 0 | loss 0.3431 | step time 146.37ms
+INFO - 11/26/25 08:50:38 - 0:10:40 - step 100 | loss 0.3376 | step time 305.77ms
+INFO - 11/26/25 08:50:53 - 0:10:56 - step 200 | loss 0.3284 | step time 183.65ms
+INFO - 11/26/25 08:51:01 - 0:11:04 - step 300 | loss 0.3301 | step time 26.70ms
+INFO - 11/26/25 08:51:04 - 0:11:06 - step 400 | loss 0.3342 | step time 25.88ms
+INFO - 11/26/25 08:51:06 - 0:11:09 - step 500 | loss 0.3387 | step time 29.23ms
+INFO - 11/26/25 08:51:07 - 0:11:09 - step 500 train loss: 0.330936998128891 test loss: 0.3416176438331604
+INFO - 11/26/25 08:51:07 - 0:11:09 - test loss 0.3416176438331604 is the best so far, saving model to experiment_output/test_run/qykk29i6nt/model.pt
+INFO - 11/26/25 08:51:09 - 0:11:12 - step 600 | loss 0.3398 | step time 25.90ms
+INFO - 11/26/25 08:51:12 - 0:11:14 - step 700 | loss 0.3144 | step time 19.89ms
+INFO - 11/26/25 08:51:14 - 0:11:16 - step 800 | loss 0.3422 | step time 20.07ms
+INFO - 11/26/25 08:51:16 - 0:11:18 - step 900 | loss 0.3192 | step time 22.85ms
+INFO - 11/26/25 08:51:18 - 0:11:21 - step 1000 | loss 0.3389 | step time 21.34ms
+INFO - 11/26/25 08:51:18 - 0:11:21 - step 1000 train loss: 0.32933276891708374 test loss: 0.3445516526699066
+INFO - 11/26/25 08:51:20 - 0:11:23 - step 1100 | loss 0.3397 | step time 16.99ms
+INFO - 11/26/25 08:51:22 - 0:11:25 - step 1200 | loss 0.3235 | step time 19.60ms
+INFO - 11/26/25 08:51:25 - 0:11:27 - step 1300 | loss 0.3310 | step time 17.86ms
+INFO - 11/26/25 08:51:27 - 0:11:29 - step 1400 | loss 0.3244 | step time 18.08ms
+INFO - 11/26/25 08:51:29 - 0:11:31 - step 1500 | loss 0.3310 | step time 30.16ms
+INFO - 11/26/25 08:51:29 - 0:11:31 - step 1500 train loss: 0.3250117599964142 test loss: 0.34502774477005005
+INFO - 11/26/25 08:51:31 - 0:11:33 - step 1600 | loss 0.3242 | step time 24.00ms
+INFO - 11/26/25 08:51:33 - 0:11:35 - step 1700 | loss 0.3141 | step time 17.23ms
+INFO - 11/26/25 08:51:35 - 0:11:37 - step 1800 | loss 0.3236 | step time 25.77ms
+INFO - 11/26/25 08:51:37 - 0:11:39 - step 1900 | loss 0.3061 | step time 31.51ms
+INFO - 11/26/25 08:51:39 - 0:11:42 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:51:39 - 0:11:42 - generating
+INFO - 11/26/25 08:52:28 - 0:12:30 - distribution of sample lengths: average: 166.9748 max: 167
+INFO - 11/26/25 08:52:28 - 0:12:30 - decoding
+INFO - 11/26/25 08:52:28 - 0:12:31 - Decoding complete. Check the output in experiment_output/test_run/qykk29i6nt/transformer-output-decoded.txt
+INFO - 11/26/25 08:52:28 - 0:12:31 - Memory allocated:  21.21MB, reserved: 34972.00MB
+INFO - 11/26/25 08:52:28 - 0:12:31 - ============ End of generation 5 ============
+INFO - 11/26/25 08:52:28 - 0:12:31 - launching search.jl
+INFO - 11/26/25 08:52:28 - 0:12:31 - JULIA_NUM_THREADS is set to 64
+INFO - 11/26/25 08:53:20 - 0:13:23 - distribution of scores
+INFO - 11/26/25 08:53:20 - 0:13:23 - tokenizing
+INFO - 11/26/25 08:53:20 - 0:13:23 - Converting to tokenized format...
+INFO - 11/26/25 08:53:20 - 0:13:23 - 0 / 5000
+INFO - 11/26/25 08:53:20 - 0:13:23 - number of examples in the dataset: 5000
+INFO - 11/26/25 08:53:20 - 0:13:23 - max word length: 56
+INFO - 11/26/25 08:53:20 - 0:13:23 - number of unique characters in the vocabulary: 4
+INFO - 11/26/25 08:53:20 - 0:13:23 - vocabulary:
+INFO - 11/26/25 08:53:20 - 0:13:23 - ['V0', 'V1', 'V2', 'V3']
+INFO - 11/26/25 08:53:20 - 0:13:23 - split up the dataset into 4500 training examples and 500 test examples
