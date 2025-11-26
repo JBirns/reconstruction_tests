@@ -30,7 +30,7 @@ function display_graph_from_adj(adj_matrix)
           nodelabel=1:nv(G))
 end
 
-line = [1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1]   
+line = [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1]
 display_graph_from_adj(pair_line_to_adj(line)[1])
 display_graph_from_adj(pair_line_to_adj(line)[2])
 
