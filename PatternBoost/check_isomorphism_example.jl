@@ -61,7 +61,7 @@ println("=" ^ 60)
 # Test 1: Two identical graphs (should be isomorphic)
 println("\nTest 1: Two identical triangles")
 adj_triangle = [0 1 1; 1 0 1; 1 1 0]
-result1 = is_iso(adj_triangle, adj_triangle)
+result1 = are_isomorphic(adj_triangle, adj_triangle)
 println("Result: ", result1, " (expected: true)")
 
 # Test 2: Two isomorphic but different graphs
