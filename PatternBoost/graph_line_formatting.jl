@@ -23,7 +23,7 @@ function random_pair()
     M = rand(1:Int(N*(N-1)/2))
     G=line_to_adj_no_delimiter(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
     H=line_to_adj_no_delimiter(shuffle([ones(Int, M); zeros(Int, Int(N*(N-1)/2)-M)]))
-    return flatten_pair(G,H)
+    return G,H
 end
 
 function flatten_adj(G)
@@ -63,10 +63,10 @@ function line_to_adj(line)
     end
     for i in eachindex(line)
         if line[i] != 2 && i in delimiter_places
-            return random_pair()
+            return random_pair()[1]
         end
         if line[i] == 2 && !(i in delimiter_places)
-            return random_pair
+            return random_pair()[1]
         end
     end
 

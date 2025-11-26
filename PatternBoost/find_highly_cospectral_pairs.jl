@@ -138,6 +138,6 @@ end
 #Produces a random pair of graphs.
 function empty_starting_point()::OBJ_TYPE
     #TODO: recover sample generation   
-    return random_pair()
+    return flatten_pair(random_pair())
 end
 
