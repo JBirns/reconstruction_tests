@@ -1,0 +1,39 @@
+from sage.all import *
+from copy import copy
+from cospectrality import *
+from collections import Counter
+import time
+
+
+start_time = time.time()
+
+
+num_graphs = 1200
+n = 25
+p = 100/(25*24/2)
+random_graphs = [graphs.RandomGNP(n, p).adjacency_matrix() for i in range(num_graphs)]
+cosps = []
+for i in range(num_graphs):
+    for j in range(i+1, num_graphs):
+        h=how_cospectral(random_graphs[i],random_graphs[j])
+        cosps.append(h)
+        if not isinstance(h,str) and h>1:
+            print(h)
+            # print(cospectrum(random_graphs[i],h))
+            # print(cospectrum(random_graphs[j],h))
+            print(random_graphs[i])
+            print(random_graphs[j])
+print(Counter(cosps))
+
+elapsed_time = time.time() - start_time
+print(f"Program executed in {elapsed_time:.6f} seconds.")
+
+# for N in range(20/5):
+#     random_graphs = random_graphs + [graphs.RandomGNP(n, p).adjacency_matrix() for i in range(growby)]
+#     for i in range(len(random_graphs)):
+#         for j in range(growby):
+#             cosps.append(how_cospectral(random_graphs[i],random_graphs[len(random_graphs)-j-1]))
+#     print(Counter(cosps))
+
+# # sage Random_sampling.sage
+
